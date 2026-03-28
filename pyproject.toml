@@ -1,0 +1,17 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "very"
+version = "2026.3.29"
+description = "Such simple, very version, wow"
+authors = [
+    {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
+]
+dependencies = [
+    "packaging>=26.0"
+]
+requires-python = ">=3.10"
+license = {text = "EUPL-1.2"}
+

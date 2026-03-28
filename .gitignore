@@ -1,6 +1,7 @@
 *.py[codz]
 __pycache__/
+.coverage
 .mypy_cache/
+.pdm-python
 .pytest_cache/
 .ruff_cache/
-.pdm-python

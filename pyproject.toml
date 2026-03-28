@@ -5,7 +5,7 @@ build-backend = "pdm.backend"
 [project]
 name = "very"
 version = "2026.3.29"
-description = "Such simple, very version, wow"
+description = "Very version, such simple, wow"
 authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
@@ -15,3 +15,39 @@ dependencies = [
 requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
 
+[dependency-groups]
+check = [
+    "ruff",
+]
+test = [
+    "coverage",
+    "pytest",
+]
+
+[tool.pdm.scripts]
+all = {composite = [
+    "check",
+    "test",
+]}
+check = {composite = [
+    "pdm lock --check",
+    "ruff format --diff very/ tests/",
+    "ruff check very/ tests/",
+]}
+fix = {composite = [
+    "ruff format very/ tests/",
+    "ruff check --fix very/ tests/",
+]}
+test = {composite = [
+    "coverage run --branch --source very --module pytest tests/",
+    "coverage report",
+]}
+
+[tool.ruff]
+format.quote-style = "single"
+lint.flake8-quotes.inline-quotes = "single"
+line-length = 120
+lint.isort.lines-after-imports = 2
+lint.select = [
+    "E", "F", "I", "Q", "RUF100", "RUF101", "UP",
+]

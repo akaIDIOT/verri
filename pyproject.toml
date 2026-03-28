@@ -18,6 +18,7 @@ license = {text = "EUPL-1.2"}
 [dependency-groups]
 check = [
     "ruff",
+    "rumdl",
 ]
 test = [
     "coverage",
@@ -33,10 +34,12 @@ check = {composite = [
     "pdm lock --check",
     "ruff format --diff very/ tests/",
     "ruff check very/ tests/",
+    "rumdl check README.md",
 ]}
 fix = {composite = [
     "ruff format very/ tests/",
     "ruff check --fix very/ tests/",
+    "rumdl check --fix README.md",
 ]}
 test = {composite = [
     "coverage run --branch --source very --module pytest tests/",
@@ -51,3 +54,6 @@ lint.isort.lines-after-imports = 2
 lint.select = [
     "E", "F", "I", "Q", "RUF100", "RUF101", "UP",
 ]
+
+[tool.rumdl]
+line-length = 120

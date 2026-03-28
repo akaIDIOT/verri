@@ -191,6 +191,25 @@ marker = "\"check\" in dependency_groups"
 dependencies = []
 
 [[packages]]
+name = "rumdl"
+version = "0.1.62"
+requires-python = ">=3.7"
+sdist = {name = "rumdl-0.1.62.tar.gz", url = "https://files.pythonhosted.org/packages/f5/71/03640339507f9685b3fd8b0313f416dd5dc8b8e701097d9b558fcce1de4c/rumdl-0.1.62.tar.gz", hashes = {sha256 = "4fbb77ab798696dcc1779aad70320cfcf8da651e8c478daff1b035e2b823aa15"}}
+wheels = [
+    {name = "rumdl-0.1.62-py3-none-macosx_10_12_x86_64.whl",url = "https://files.pythonhosted.org/packages/05/e6/ef95be08e17ed58aaec9f2cfbfe9e567fedba39abe7ed5e8546f091b982b/rumdl-0.1.62-py3-none-macosx_10_12_x86_64.whl",hashes = {sha256 = "1fc26623b8490ffad89c3e1854da3e06194c0de094778f9245e684947f9108f0"}},
+    {name = "rumdl-0.1.62-py3-none-macosx_11_0_arm64.whl",url = "https://files.pythonhosted.org/packages/9c/24/1de11fcc13743bca6af1b1c28080393fbfb616fd8a912aff05617562ddde/rumdl-0.1.62-py3-none-macosx_11_0_arm64.whl",hashes = {sha256 = "1af545cdbd63be014749d0071600e98e43b092c30eaedf85059f4f47d307a1bd"}},
+    {name = "rumdl-0.1.62-py3-none-manylinux_2_28_aarch64.whl",url = "https://files.pythonhosted.org/packages/11/24/1f60ca31b318e06f3d2b38450d22c092450f65f7b76304be57b8a77e3746/rumdl-0.1.62-py3-none-manylinux_2_28_aarch64.whl",hashes = {sha256 = "8be2eac5e901dcb94639b1e7b51f7b8cc777389644924097af4c5f4797fd6109"}},
+    {name = "rumdl-0.1.62-py3-none-manylinux_2_28_x86_64.whl",url = "https://files.pythonhosted.org/packages/17/98/2db92faf59a8ac3f45fe44e2b5d555b07c953d779fbb6c915779007bd2f9/rumdl-0.1.62-py3-none-manylinux_2_28_x86_64.whl",hashes = {sha256 = "07c413051946761e8194408f1462213269e0e9a23bb0313306b5040f61946f22"}},
+    {name = "rumdl-0.1.62-py3-none-musllinux_1_2_aarch64.whl",url = "https://files.pythonhosted.org/packages/9e/69/e203e42e83ae2eaf7a099dc4b87afa9736a99c7e4953902f69f5e3e91eca/rumdl-0.1.62-py3-none-musllinux_1_2_aarch64.whl",hashes = {sha256 = "3c034ad69d016f74b185edd311fcea762e02472e1f7eca38284821fca6651840"}},
+    {name = "rumdl-0.1.62-py3-none-musllinux_1_2_x86_64.whl",url = "https://files.pythonhosted.org/packages/8d/cb/c4ed43d55390e2d4f1b3751eb82d4dc029cd3125993d7d2a9ce45ae1a8d7/rumdl-0.1.62-py3-none-musllinux_1_2_x86_64.whl",hashes = {sha256 = "98375e0902156aacd6835d0c8a27398a76840344459355d7da4f1691680c3689"}},
+    {name = "rumdl-0.1.62-py3-none-win_amd64.whl",url = "https://files.pythonhosted.org/packages/b0/eb/cb6a8ca6603ea4bf9a52b9e64e7e4be6678c60c76eb94cfa098dd241c3c8/rumdl-0.1.62-py3-none-win_amd64.whl",hashes = {sha256 = "7b0ca819ad5504051bd8cb71fc20b5eb413029cf3b188e8c5ded9a0bb95241ad"}},
+]
+marker = "\"check\" in dependency_groups"
+
+[packages.tool.pdm]
+dependencies = []
+
+[[packages]]
 name = "pluggy"
 version = "1.6.0"
 requires-python = ">=3.9"
@@ -329,7 +348,7 @@ marker = "python_version < \"3.11\" and \"test\" in dependency_groups"
 dependencies = []
 
 [tool.pdm]
-hashes = {sha256 = "ade081a3758f877c0967e1bff4d33ba60bdfb41b25df606508472091d3775d96"}
+hashes = {sha256 = "1bee96026494ceb46fe7ee0111e9f2b681a36bdb73b7359fa71efebfd2ef1bea"}
 strategy = ["inherit_metadata", "static_urls"]
 
 [[tool.pdm.targets]]

@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pdm-project/setup-pdm@v4
+        with:
+          python-version: '3.14'
+      - run: pdm install --group check
+      - run: pdm run check
+      - run: pdm build --no-sdist
+      - uses: pypa/gh-action-pypi-publish@release/v1

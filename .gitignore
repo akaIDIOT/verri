@@ -5,3 +5,4 @@ __pycache__/
 .pdm-python
 .pytest_cache/
 .ruff_cache/
+.rumdl_cache/

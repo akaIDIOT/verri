@@ -57,3 +57,6 @@ lint.select = [
 
 [tool.rumdl]
 line-length = 120
+
+[tool.rumdl.MD013]
+reflow = true

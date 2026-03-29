@@ -1,6 +1,7 @@
-# Very versions, such simple, wow
+# Very version, such flavour, wow
 
-Just some utility functions to get a version for a project. Designed to be used with `pdm-backend` as such:
+A set of opinionated yet tasty and simple versioning schemes to set-and-forget for python projects. Using `pdm-backend`,
+like this:
 
 ```toml
 [build-system]
@@ -9,7 +10,7 @@ build-backend = "pdm.backend"
 
 [tool.pdm.version]
 source = "call"
-getter = "very.versions:commit_date_n1_dev"
+getter = "very.tasty:strawberry"
 ```
 
 More to follow. Maybe. It was trying to be simple, remember.

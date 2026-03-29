@@ -2,6 +2,7 @@
 name = "verri"
 version = "2026.3.29"
 description = "Verri version, such flavour, wow"
+readme = "README.md"
 authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
@@ -10,6 +11,10 @@ dependencies = [
 ]
 requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
+
+[project.urls]
+homepage = "https://github.com/akaIDIOT/verri/"
+source = "https://github.com/akaIDIOT/verri/"
 
 [dependency-groups]
 check = [

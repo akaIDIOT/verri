@@ -1,6 +1,7 @@
 [project]
+dynamic = ["version"]
 name = "verri"
-version = "2026.3.29"
+import-names = ["verri"]
 description = "Verri version, such flavour, wow"
 readme = "README.md"
 authors = [
@@ -25,6 +26,10 @@ test = [
     "coverage",
     "pytest",
 ]
+
+[tool.pdm.version]
+source = "call"
+getter = "verri.tasty:strawberry"
 
 [tool.pdm.scripts]
 all = {composite = [

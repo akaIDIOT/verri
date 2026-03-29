@@ -1,4 +1,4 @@
-from very import dates
+from verri import dates
 
 
 def test_midnight_zeroes():

@@ -1,6 +1,6 @@
 import datetime as dt
 
-from very import dates, git, version
+from verri import dates, git, version
 
 
 @version

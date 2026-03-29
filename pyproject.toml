@@ -3,9 +3,9 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project]
-name = "very"
+name = "verri"
 version = "2026.3.29"
-description = "Very version, such simple, wow"
+description = "Verri version, such flavour, wow"
 authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
@@ -32,17 +32,17 @@ all = {composite = [
 ]}
 check = {composite = [
     "pdm lock --check",
-    "ruff format --diff very/ tests/",
-    "ruff check very/ tests/",
+    "ruff format --diff verri/ tests/",
+    "ruff check verri/ tests/",
     "rumdl check README.md",
 ]}
 fix = {composite = [
-    "ruff format very/ tests/",
-    "ruff check --fix very/ tests/",
+    "ruff format verri/ tests/",
+    "ruff check --fix verri/ tests/",
     "rumdl check --fix README.md",
 ]}
 test = {composite = [
-    "coverage run --branch --source very --module pytest tests/",
+    "coverage run --branch --source verri --module pytest tests/",
     "coverage report",
 ]}
 

@@ -1,6 +1,6 @@
 import subprocess
 
-from very import dates
+from verri import dates
 
 
 def commit_ts(ref='HEAD'):

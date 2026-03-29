@@ -1,11 +1,9 @@
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
 [project]
+dynamic = ["version"]
 name = "verri"
-version = "2026.3.29"
+import-names = ["verri"]
 description = "Verri version, such flavour, wow"
+readme = "README.md"
 authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
@@ -14,6 +12,10 @@ dependencies = [
 ]
 requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
+
+[project.urls]
+homepage = "https://github.com/akaIDIOT/verri/"
+source = "https://github.com/akaIDIOT/verri/"
 
 [dependency-groups]
 check = [
@@ -24,6 +26,10 @@ test = [
     "coverage",
     "pytest",
 ]
+
+[tool.pdm.version]
+source = "call"
+getter = "verri.tasty:strawberry"
 
 [tool.pdm.scripts]
 all = {composite = [
@@ -60,3 +66,9 @@ line-length = 120
 
 [tool.rumdl.MD013]
 reflow = true
+
+[build-system]
+# NB: using pdm-backend's own trick to allow a project depend on itself during a build
+#     normally, verri should be added to the requires field and the build-backend should be "pdm.backend"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend.intree"

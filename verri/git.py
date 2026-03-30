@@ -1,6 +1,6 @@
 import subprocess
 
-from verri import dates
+from verri import dates, environments
 
 
 def commit_ts(ref='HEAD'):
@@ -25,7 +25,7 @@ def clean():
 
 
 def branch():
-    return git('branch', '--show-current')
+    return git('branch', '--show-current') or environments.ci_current_branch()
 
 
 def resolve(ref='HEAD'):

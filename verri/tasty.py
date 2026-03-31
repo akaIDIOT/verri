@@ -21,7 +21,16 @@ def pineapple():
     commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)
     commit_version = f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}'
     n = git.num_commits_since(dates.midnight(commit_ts))
-    release = bool(environments.on_ci() and git.branch() == 'main' and git.clean())
+    # combine all requirements for the version under construction to be considered a releasable pineapple
+    release = all(
+        (
+            environments.on_ci(),
+            git.clean(),
+            branch := git.branch(),
+            # local git typically has no concept of a default branch, assume it'll be either 'main' or 'master'
+            branch == environments.ci_default_branch() or branch in {'main', 'master'},
+        )
+    )
 
     match release, n:
         case True, 1 | 0:

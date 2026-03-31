@@ -10,9 +10,9 @@ def strawberry():
     n = git.num_commits_since(dates.midnight(commit_ts))
 
     if git.clean():
-        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{n}'
+        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, n - 1)}'
     else:
-        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{n}+dirty'
+        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, n - 1)}+dirty'
 
 
 @version
@@ -24,7 +24,7 @@ def pineapple():
     release = bool(environments.on_ci() and git.branch() == 'main' and git.clean())
 
     match release, n:
-        case True, 1:
+        case True, 1 | 0:
             return commit_version
         case True, n if n > 1:
             return f'{commit_version}.{n - 1}'

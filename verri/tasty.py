@@ -10,6 +10,14 @@ def mango():
 
 
 @version
+def cherry():
+    now = dates.now()
+    today = dates.midnight(ts=now)
+    seconds_today = int((now - today).total_seconds())
+    return f'{today.year}.{today.month}.{today.day}.{seconds_today}'
+
+
+@version
 def strawberry():
     ref = git.resolve()
     commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)

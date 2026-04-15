@@ -27,6 +27,10 @@ def version(func=None, /, *, fallback=None):
                     raise TypeError(f'invalid fallback for version "{func.__name__}": {fallback!r}')
 
             value = parse(value)
+            if local := getattr(e, 'version_local', None):
+                # the error type provided a specific value for the local version component
+                value = value.__replace__(local=local)
+
             warnings.warn(
                 dedent(
                     f"""

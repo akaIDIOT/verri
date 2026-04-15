@@ -12,7 +12,6 @@ _FALLBACK_VERSION = '0.0+unable.to.determine.version'
 
 def version(func=None, /, *, fallback=None):
     def validate(*args, **kwargs):
-        name = func.__name__
         try:
             value = func(*args, **kwargs)
             return str(parse(value))
@@ -25,13 +24,13 @@ def version(func=None, /, *, fallback=None):
                 case Callable():
                     value = fallback()
                 case _:
-                    raise TypeError
+                    raise TypeError(f'invalid fallback for version "{func.__name__}": {fallback!r}')
 
             value = parse(value)
             warnings.warn(
                 dedent(
                     f"""
-                    WARNING: {__name__} failed to determine {name} version during build:
+                    WARNING: {__name__} failed to determine {func.__name__} version during build:
                     
                         {e!r}
                     

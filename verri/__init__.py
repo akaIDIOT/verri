@@ -1,6 +1,6 @@
 import warnings
 from collections.abc import Callable
-from functools import partial
+from functools import partial, update_wrapper
 from textwrap import dedent
 
 from packaging.version import parse
@@ -46,7 +46,7 @@ def version(func=None, /, *, fallback=None):
 
     if func:
         # form @version
-        return validate
+        return update_wrapper(validate, func)
     else:
         # form @version(fallback=...)
         return partial(version, fallback=fallback)

@@ -1,5 +1,3 @@
-import datetime as dt
-
 from verri import dates, environments, git, version
 
 
@@ -20,7 +18,7 @@ def cherry():
 @version
 def strawberry():
     ref = git.resolve()
-    commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)
+    commit_ts = git.commit_ts(ref)
     n = git.num_commits_since(dates.midnight(commit_ts))
 
     if git.clean():
@@ -32,7 +30,7 @@ def strawberry():
 @version
 def pineapple():
     ref = git.resolve()
-    commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)
+    commit_ts = git.commit_ts(ref)
     commit_version = f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}'
     n = git.num_commits_since(dates.midnight(commit_ts))
     # combine all requirements for the version under construction to be considered a releasable pineapple

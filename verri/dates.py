@@ -8,3 +8,7 @@ def now():
 def midnight(ts=None):
     ts = ts or now()
     return ts.replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+def from_ts(ts):
+    return dt.datetime.fromtimestamp(ts, tz=dt.timezone.utc)

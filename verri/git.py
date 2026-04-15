@@ -5,7 +5,7 @@ from verri import dates, environments
 
 def commit_ts(ref='HEAD'):
     commit = resolve(ref)
-    return int(git('show', '--quiet', '--format=%cd', '--date=unix', commit))
+    return dates.from_ts(int(git('show', '--quiet', '--format=%cd', '--date=unix', commit)))
 
 
 def num_commits_today(ts=None):

@@ -32,10 +32,6 @@ def resolve(ref='HEAD'):
     return git('rev-parse', ref)
 
 
-def git(*args):
-    return subprocess.check_output(('git', *args), stderr=subprocess.DEVNULL, text=True).strip()
-
-
 def _is_commit(ref):
     try:
         return len(bytes.fromhex(ref)) in {20, 32}
@@ -48,3 +44,7 @@ def short(ref='HEAD'):
         return ref[:7]
     else:
         return short(resolve(ref))
+
+
+def git(*args):
+    return subprocess.check_output(('git', *args), stderr=subprocess.DEVNULL, text=True).strip()

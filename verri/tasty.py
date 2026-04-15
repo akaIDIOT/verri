@@ -4,6 +4,12 @@ from verri import dates, environments, git, version
 
 
 @version
+def mango():
+    today = dates.midnight()
+    return f'{today.year}.{today.month}.{today.day}'
+
+
+@version
 def strawberry():
     ref = git.resolve()
     commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)

@@ -15,7 +15,7 @@ def cherry():
     return f'{today.year}.{today.month}.{today.day}.{seconds_today}'
 
 
-@version
+@version(fallback=mango)
 def strawberry():
     ref = git.resolve()
     commit_ts = git.commit_ts(ref)
@@ -27,7 +27,7 @@ def strawberry():
         return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, n - 1)}+dirty'
 
 
-@version
+@version(fallback=mango)
 def pineapple():
     ref = git.resolve()
     commit_ts = git.commit_ts(ref)

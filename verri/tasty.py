@@ -1,12 +1,24 @@
-import datetime as dt
-
 from verri import dates, environments, git, version
+
+
+@version
+def mango():
+    today = dates.midnight()
+    return f'{today.year}.{today.month}.{today.day}'
+
+
+@version
+def cherry():
+    now = dates.now()
+    today = dates.midnight(ts=now)
+    seconds_today = int((now - today).total_seconds())
+    return f'{today.year}.{today.month}.{today.day}.{seconds_today}'
 
 
 @version
 def strawberry():
     ref = git.resolve()
-    commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)
+    commit_ts = git.commit_ts(ref)
     n = git.num_commits_since(dates.midnight(commit_ts))
 
     if git.clean():
@@ -18,7 +30,7 @@ def strawberry():
 @version
 def pineapple():
     ref = git.resolve()
-    commit_ts = dt.datetime.fromtimestamp(git.commit_ts(ref), tz=dt.timezone.utc)
+    commit_ts = git.commit_ts(ref)
     commit_version = f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}'
     n = git.num_commits_since(dates.midnight(commit_ts))
     # combine all requirements for the version under construction to be considered a releasable pineapple

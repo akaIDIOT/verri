@@ -29,6 +29,7 @@ def version(func=None, /, *, fallback=None):
             value = parse(value)
             if local := getattr(e, 'version_local', None):
                 # the error type provided a specific value for the local version component
+                # TODO: use copy.replace() when requires-python reaches >=3.13
                 value = value.__replace__(local=local)
 
             warnings.warn(

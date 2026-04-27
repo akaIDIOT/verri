@@ -1,10 +1,12 @@
 import datetime as dt
 from contextlib import nullcontext
+from subprocess import CalledProcessError
+from unittest.mock import patch
 
 import pytest
 
 from verri import dates, git
-from verri.errors import NoRepository
+from verri.errors import CommandNotFound, NoRepository
 
 
 def test_commit_ts(inside_repo):
@@ -79,3 +81,20 @@ def test_resolve_short(inside_repo, repo, context, commit):
     with inside_repo(repo), context:
         assert git.resolve('HEAD').startswith(commit)
         assert git.short() == commit
+
+
+def test_no_git():
+    with patch.object(git.subprocess, 'check_output') as check_output:
+        check_output.side_effect = FileNotFoundError('/usr/bin/git')
+        with pytest.raises(CommandNotFound, match='git'):
+            git.git('--version')
+
+
+def test_git_generic_error():
+    with patch.object(git.subprocess, 'check_output') as check_output:
+        error = CalledProcessError(cmd='git --version', returncode=123)
+        check_output.side_effect = error
+        with pytest.raises(CalledProcessError) as e:
+            git.git('--version')
+
+    assert e.value is error

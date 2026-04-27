@@ -51,6 +51,6 @@ def git(*args):
     except subprocess.CalledProcessError as e:
         if e.returncode == 128:
             # specific return code for "fatal: not a git repository"
-            raise NoRepository(e.stderr.strip()) from e
+            raise NoRepository(e.stderr.strip() if e.stderr else None) from e
         else:
             raise

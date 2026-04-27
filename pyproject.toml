@@ -8,7 +8,7 @@ authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
 dependencies = [
-    "packaging>=26.0"
+    "packaging>=26.0",
 ]
 requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
@@ -24,6 +24,7 @@ check = [
 ]
 test = [
     "coverage",
+    "freezegun",
     "pytest",
 ]
 

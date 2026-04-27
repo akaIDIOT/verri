@@ -9,10 +9,6 @@ def commit_ts(ref='HEAD'):
     return dates.from_ts(int(git('show', '--quiet', '--format=%cd', '--date=unix', commit)))
 
 
-def num_commits_today(ts=None):
-    return num_commits_since(ts=dates.midnight(ts=ts))
-
-
 def num_commits_since(ts):
     return len(
         git('log', '--first-parent', f'--since={int(ts.timestamp())}', '--format=%cd', '--date=unix').splitlines(

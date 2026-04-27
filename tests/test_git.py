@@ -23,6 +23,27 @@ def test_resolve_short(inside_repo, repo, context, commit):
         assert git.short() == commit
 
 
+def test_clean(inside_repo):
+    with inside_repo('06-merge-feature-branch.tar.gz'):
+        assert git.clean()
+    with inside_repo('07-dirty.tar.gz'):
+        assert not git.clean()
+
+
+@pytest.mark.parametrize(
+    ('repo', 'branch'),
+    [
+        ('02-initial-commit.tar.gz', 'main'),
+        ('04-feature-branch.tar.gz', 'feature/branch'),
+        ('06-merge-feature-branch.tar.gz', 'main'),
+        ('07-dirty.tar.gz', 'main'),
+    ],
+)
+def test_current_branch(inside_repo, repo, branch):
+    with inside_repo(repo):
+        assert git.branch() == branch
+
+
 def test_commit_ts(inside_repo):
     with inside_repo('06-merge-feature-branch.tar.gz'):
         ts = dt.datetime(2026, 4, 27, 16, 45, 56, tzinfo=dt.timezone.utc)

@@ -36,7 +36,7 @@ def resolve(ref='HEAD'):
 def _is_commit(ref):
     try:
         return len(bytes.fromhex(ref)) in {20, 32}
-    except TypeError:
+    except ValueError:
         return False
 
 

@@ -1,9 +1,9 @@
 # Test Repositories
 
-The repositories used in testing are snapshots of the same test repository, archived in various states to test the 
+The repositories used in testing are snapshots of the same test repository, archived in various states to test the
 behaviour of verri's git components:
 
-```
+```plain
     2026-04-27
                00-no-repository.tar.gz
                01-init-no-commits.tar.gz

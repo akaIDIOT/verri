@@ -21,6 +21,29 @@ def test_commit_ts_mismatching_author_date(inside_repo):
         assert git.commit_ts() == ts
 
 
+@pytest.mark.parametrize(
+    ('repo', 'num_commits'),
+    [
+        # NB: all commits in the repositories used here were made on the same day, 2026-04-27 (see repos/README.md)
+        ('02-initial-commit.tar.gz', 1),
+        ('03-two-commits.tar.gz', 2),
+        # commits on the current branch count as normal
+        ('04-feature-branch.tar.gz', 3),
+        ('05-feature-branch-two-commits.tar.gz', 4),
+        # commits are counted along the 'first-parent' path; commits on main in this case
+        ('06-merge-feature-branch.tar.gz', 3),
+        # whether the repository is clean does not matter when counting commits
+        ('07-dirty.tar.gz', 3),
+        # author date should not matter, commit was made on the same day
+        ('08-authored-2001.tar.gz', 4),
+    ],
+)
+def test_num_commits_since(inside_repo, repo, num_commits):
+    with inside_repo(repo):
+        commit_day = dates.midnight(git.commit_ts())
+        assert git.num_commits_since(commit_day) == num_commits
+
+
 def test_clean(inside_repo):
     with inside_repo('06-merge-feature-branch.tar.gz'):
         assert git.clean()

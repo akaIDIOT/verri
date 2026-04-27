@@ -3,7 +3,7 @@ from contextlib import nullcontext
 
 import pytest
 
-from verri import git, dates
+from verri import dates, git
 from verri.errors import NoRepository
 
 

@@ -68,7 +68,7 @@ def test_branch(inside_repo, repo, branch):
 
 
 @pytest.mark.parametrize(
-    ('repo', 'context', 'commit'),
+    ('repo', 'expected_feedback', 'commit'),
     [
         ('00-no-repository.tar.gz', pytest.raises(NoRepository, match='not a git repository'), None),
         ('01-init-no-commits.tar.gz', pytest.raises(NoRepository, match='ambiguous argument'), None),
@@ -77,8 +77,8 @@ def test_branch(inside_repo, repo, branch):
         ('07-dirty.tar.gz', nullcontext(), 'f586083'),
     ],
 )
-def test_resolve_short(inside_repo, repo, context, commit):
-    with inside_repo(repo), context:
+def test_resolve_short(inside_repo, repo, expected_feedback, commit):
+    with inside_repo(repo), expected_feedback:
         assert git.resolve('HEAD').startswith(commit)
         assert git.short() == commit
 

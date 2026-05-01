@@ -51,7 +51,7 @@ def test_strawberry_flavour(inside_repo, repo, context, version):
 
 
 @pytest.mark.parametrize(
-    ('repo', 'context', 'version'),
+    ('repo', 'expected_feedback', 'version'),
     [
         ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
         ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
@@ -65,13 +65,13 @@ def test_strawberry_flavour(inside_repo, repo, context, version):
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')
-def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, repo, context, version):
-    with inside_repo(repo), context:
+def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, repo, expected_feedback, version):
+    with inside_repo(repo), expected_feedback:
         assert pineapple() == version
 
 
 @pytest.mark.parametrize(
-    ('repo', 'context', 'version'),
+    ('repo', 'expected_feedback', 'version'),
     [
         ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
         ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
@@ -85,6 +85,6 @@ def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, rep
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')
-def test_pineapple_flavour_on_ci(on_github_actions, inside_repo, repo, context, version):
-    with inside_repo(repo), context:
+def test_pineapple_flavour_on_ci(on_github_actions, inside_repo, repo, expected_feedback, version):
+    with inside_repo(repo), expected_feedback:
         assert pineapple() == version

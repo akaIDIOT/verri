@@ -9,10 +9,6 @@ def commit_ts(ref='HEAD'):
     return dates.from_ts(int(git('show', '--quiet', '--format=%cd', '--date=unix', commit)))
 
 
-def num_commits_today(ts=None):
-    return num_commits_since(ts=dates.midnight(ts=ts))
-
-
 def num_commits_since(ts):
     return len(
         git('log', '--first-parent', f'--since={int(ts.timestamp())}', '--format=%cd', '--date=unix').splitlines(
@@ -36,7 +32,7 @@ def resolve(ref='HEAD'):
 def _is_commit(ref):
     try:
         return len(bytes.fromhex(ref)) in {20, 32}
-    except TypeError:
+    except ValueError:
         return False
 
 
@@ -55,6 +51,6 @@ def git(*args):
     except subprocess.CalledProcessError as e:
         if e.returncode == 128:
             # specific return code for "fatal: not a git repository"
-            raise NoRepository(e.stderr.strip()) from e
+            raise NoRepository(e.stderr.strip() if e.stderr else None) from e
         else:
             raise

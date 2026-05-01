@@ -8,7 +8,7 @@ authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
 ]
 dependencies = [
-    "packaging>=26.0"
+    "packaging>=26.0",
 ]
 requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
@@ -24,6 +24,7 @@ check = [
 ]
 test = [
     "coverage",
+    "freezegun",
     "pytest",
 ]
 
@@ -40,12 +41,12 @@ check = {composite = [
     "pdm lock --check",
     "ruff format --diff verri/ tests/",
     "ruff check verri/ tests/",
-    "rumdl check README.md",
+    "rumdl check README.md tests/repos/README.md",
 ]}
 fix = {composite = [
     "ruff format verri/ tests/",
     "ruff check --fix verri/ tests/",
-    "rumdl check --fix README.md",
+    "rumdl check --fix README.md tests/repos/README.md",
 ]}
 test = {composite = [
     "coverage run --branch --source verri --module pytest tests/",

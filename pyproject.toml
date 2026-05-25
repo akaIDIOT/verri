@@ -22,6 +22,9 @@ check = [
     "ruff",
     "rumdl",
 ]
+docs = [
+    "zensical",
+]
 test = [
     "coverage",
     "freezegun",

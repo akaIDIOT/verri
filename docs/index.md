@@ -63,9 +63,11 @@ same commit. `verri` provides that exact thing in two different flavours:
     1. while the repository is clean, no files that are tracked by `git` are modified when the version is determined;
     1. on the project's default branch (either the explicitly configured one, or `main` / `master`).
 
-So when the merge commit of the latest feature was made on the 3rd of April 2026, our :strawberry: version would be *2026.3.4.0*, or *2026.3.4.1* if it wasn't the first, and so on.
-A :pineapple: version will omit the final *.0*, but number subsequent releases on the same day in the same way. 
-Any build using a :pineapple: version not being performed on a CI/CD environment, however, would result in a version like *2026.3.4+a1b2c3d*, referencing the commit hash for the commit being built instead.
+So when the merge commit of the latest feature was made on the 3rd of April 2026, our :strawberry: version would be
+*2026.3.4.0*, or *2026.3.4.1* if it wasn't the first, and so on. A :pineapple: version will omit the final *.0*, but
+number subsequent releases on the same day in the same way. Any build using a :pineapple: version not being performed on
+a CI/CD environment, however, would result in a version like *2026.3.4+a1b2c3d*, referencing the commit hash for the
+commit being built instead.
 
 Additionally, both :strawberry: and :pineapple: flavours will mark the version with a `+dirty`
 [local identifier](https://packaging.python.org/en/latest/specifications/version-specifiers/#local-version-identifiers)
@@ -75,6 +77,14 @@ project locally, but only creating a releasable version number when an actual re
 change anything about a project itself, but a locally built or installed version will be distinguishable from one that
 was meant to be a release.
 
-Choosing a version that fits your project best is up to you. When in doubt, it might help to know that the way a :pineapple: version works is the reason `verri` was created :wink:.
+Choosing a version that fits your project best is up to you. When in doubt, it might help to know that the way a
+:pineapple: version works is the reason `verri` was created :wink:
 
 ## What's with the fruit?
+
+Good question… Initially, discussion around versions would refer to a template like `yyyy.mm.dd` as an ISO-date version,
+or something along those lines. As that same discussion went on, however, the added requirements being included in
+determining what version to use in which circumstances, made the names of these templates cumbersome. After trying to
+explain `isodate_num_or_commit_when_local` to others, the template names took the complete opposite direction and
+started using names that are easy to say and remember, even if they are meaningless on their own. Using the names of
+fruit, it's clear that these functions have something in common, and it allows `verri` to call them tasty :yum:

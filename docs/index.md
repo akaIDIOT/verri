@@ -47,9 +47,10 @@ the commit being built. There's two flavours based on "today", the current date[
 - :cherries:, or `verri.tasty:cherry`: similar to the :mango:, but adding the number of seconds since midnight to avoid
   creating the same version twice.
 
-Let's say the current date is the 2nd of January 2026, our :mango: version would be *2026.1.2*. A second release on the
-same day would create the same version number, which might cause problems. Our :cherries: version, however, would add a
-fourth component and thus be different, assuming the builds for the two releases weren't running simultaneous.
+Let's say the current date is the 2nd of January 2026, our :mango: version would be **2026.1.2**. A second release on
+the same day would create the same version number, which might cause problems. Our :cherries: version, however, would
+add a number of seconds as the fourth component and thus be different, assuming the builds for the two releases weren't
+running simultaneous.
 
 Using just the build date or timestamp as a version can be useful, but using the *commit date*[^utc] of a release is
 even better. That way, when a release is rebuilt later, it would arrive at the same version as any previous build of the
@@ -64,12 +65,12 @@ same commit. `verri` provides that exact thing in two different flavours:
     1. on the project's default branch (either the explicitly configured one, or `main` / `master`).
 
 So when the merge commit of the latest feature was made on the 3rd of April 2026, our :strawberry: version would be
-*2026.3.4.0*, or *2026.3.4.1* if it wasn't the first, and so on. A :pineapple: version will omit the final *.0*, but
-number subsequent releases on the same day in the same way. Any build using a :pineapple: version not being performed on
-a CI/CD environment, however, would result in a version like *2026.3.4.dev1+a1b2c3d*, referencing the commit hash for
-the commit being built instead and putting the commit counter for the day up as a development version.
+**2026.3.4.0**, or **2026.3.4.1** if it wasn't the first, and so on. A :pineapple: version will omit the final **.0**,
+but number subsequent releases on the same day in the same way. Any build using a :pineapple: version not being
+performed on a CI/CD environment, however, would result in a version like **2026.3.4.dev1+a1b2c3d**, referencing the
+commit hash for the commit being built instead and putting the commit counter for the day up as a development version.
 
-Additionally, both :strawberry: and :pineapple: flavours will mark the version with a `+dirty`
+Additionally, both :strawberry: and :pineapple: flavours will mark the version with a **+dirty**
 [local identifier](https://packaging.python.org/en/latest/specifications/version-specifiers/#local-version-identifiers)
 if the repository isn't clean when the version is determined. The :pineapple: version is the most complex of all of the
 options `verri` provides, but also the most meaningful. It is meant to provide a function version for anyone building a

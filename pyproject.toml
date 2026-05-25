@@ -39,17 +39,19 @@ getter = "verri.tasty:strawberry"
 all = {composite = [
     "check",
     "test",
+    "docs",
 ]}
 check = {composite = [
     "pdm lock --check",
     "ruff format --diff verri/ tests/",
     "ruff check verri/ tests/",
-    "rumdl check README.md tests/repos/README.md",
+    "rumdl check",
 ]}
+docs = "zensical build --clean --strict"
 fix = {composite = [
     "ruff format verri/ tests/",
     "ruff check --fix verri/ tests/",
-    "rumdl check --fix README.md tests/repos/README.md",
+    "rumdl fmt",
 ]}
 test = {composite = [
     "coverage run --branch --source verri --module pytest tests/",
@@ -66,7 +68,9 @@ lint.select = [
 ]
 
 [tool.rumdl]
+include = ["README.md", "docs/*.md", "tests/repos/README.md"]
 line-length = 120
+respect-gitignore = true
 
 [tool.rumdl.MD013]
 reflow = true

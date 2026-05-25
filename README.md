@@ -16,4 +16,12 @@ source = "call"
 getter = "verri.tasty:pineapple"
 ```
 
-More to follow. Maybe. It was trying to be simple, remember.
+There's a few flavours available:
+
+- 🥭, `verri.tasty.mango`: a purely date-based version, like *yyyy.mm.dd*;
+- 🍒, `verri.tasty.cherry`: another date-based version, less likely to create duplicates by using the number of seconds
+  in the day like *yyyy.s*;
+- 🍓, `verri.tasty.strawberry`: a version based on the HEAD commit date, appending a counter at the end for the number
+  of commits since the HEAD commit date, like *yyyy.mm.dd.n*;
+- 🍍, `verri.tasty.pineapple`: also based on the HEAD commit date, creating a 🍓 'release version' on CI environments or
+  referencing the HEAD commit's hash otherwise.

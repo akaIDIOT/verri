@@ -16,11 +16,14 @@ source = "call"
 getter = "verri.tasty:pineapple"
 ```
 
+Every time your project is built (like locally when it gets `pip install`ed, during `pdm install` or on CI/CD during
+testing or release steps), the project's dynamic version can be automatically determined by `verri`.
+
 There's a few flavours available:
 
 - 🥭, `verri.tasty.mango`: a purely date-based version, like *2026.1.2*;
 - 🍒, `verri.tasty.cherry`: another date-based version, less likely to create duplicates by using the number of seconds
-  in the day like *2026.12345*;
+  in the day like *2026.1.2.12345*;
 - 🍓, `verri.tasty.strawberry`: a version based on the HEAD commit date, appending a counter at the end for the number
   of commits since the HEAD commit date, like *2026.1.2.0*;
 - 🍍, `verri.tasty.pineapple`: also based on the HEAD commit date, creating a 'release version' much like the strawberry
@@ -30,8 +33,8 @@ Note that the commit-based versions assume your project is using `git`, and `git
 Both of these flavours will mark the version as "dirty" if tracked files contain uncommited changes when the version is
 being established. The 🍍 flavour will consider a version a release if the following is true:
 
-- a build is being run on a CI/CD environment (detected through environment variables);
-- the repository is considered clean when the version is determined;
+- the build is being run on a CI/CD environment (detected through environment variables);
+- the repository is considered clean when the version is determined (that is, no changes in files tracked by `git`);
 - the build is run for the repository's default branch.
 
 As `verri` is designed to be simple, it's great for projects that don't want or need to follow semantic version, but

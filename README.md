@@ -18,13 +18,13 @@ getter = "verri.tasty:pineapple"
 
 There's a few flavours available:
 
-- 🥭, `verri.tasty.mango`: a purely date-based version, like *yyyy.mm.dd*;
+- 🥭, `verri.tasty.mango`: a purely date-based version, like *2026.1.2*;
 - 🍒, `verri.tasty.cherry`: another date-based version, less likely to create duplicates by using the number of seconds
-  in the day like *yyyy.s*;
+  in the day like *2026.12345*;
 - 🍓, `verri.tasty.strawberry`: a version based on the HEAD commit date, appending a counter at the end for the number
-  of commits since the HEAD commit date, like *yyyy.mm.dd.n*;
+  of commits since the HEAD commit date, like *2026.1.2.0*;
 - 🍍, `verri.tasty.pineapple`: also based on the HEAD commit date, creating a 'release version' much like the strawberry
-  flavour on CI/CD environments or referencing the HEAD commit's hash otherwise.
+  flavour on CI/CD environments or referencing the HEAD commit's hash otherwise, like *2026.1.2* or *2026.1.2+a1b2c3d*.
 
 Note that the commit-based versions assume your project is using `git`, and `git` is available as a command line tool.
 Both of these flavours will mark the version as "dirty" if tracked files contain uncommited changes when the version is

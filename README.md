@@ -27,7 +27,8 @@ There's a few flavours available:
 - 🍓, `verri.tasty:strawberry`: a version based on the HEAD commit date, appending a counter at the end for the number
   of commits since the HEAD commit date, like *2026.1.2.0*;
 - 🍍, `verri.tasty:pineapple`: also based on the HEAD commit date, creating a 'release version' much like the strawberry
-  flavour on CI/CD environments or referencing the HEAD commit's hash otherwise, like *2026.1.2* or *2026.1.2+a1b2c3d*.
+  flavour on CI/CD environments or referencing the HEAD commit's hash otherwise, like *2026.1.2* or
+  *2026.1.2.dev1+a1b2c3d*.
 
 Note that the commit-based versions assume your project is using `git`, and `git` is available as a command line tool.
 Both of these flavours will mark the version as "dirty" if tracked files contain uncommited changes when the version is

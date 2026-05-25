@@ -14,8 +14,8 @@ requires-python = ">=3.10"
 license = {text = "EUPL-1.2"}
 
 [project.urls]
-homepage = "https://github.com/akaIDIOT/verri/"
-source = "https://github.com/akaIDIOT/verri/"
+Docs = "https://akaidiot.github.io/verri/"
+Homepage = "https://github.com/akaIDIOT/verri/"
 
 [dependency-groups]
 check = [

@@ -2,7 +2,7 @@
 icon: lucide/citrus
 ---
 
-# Getting started
+# Verri version, such flavour, wow
 
 `verri` is an opinionated, yet simple tool to add a PEP-440 compliant calendar versioning (or
 [CalVer](https://calver.org/)) scheme to your Python project. It was made to integrate with `pdm-backend`'s way to
@@ -41,7 +41,7 @@ Looking at the example `pyproject.toml` snippet above, the actual version being 
 the commit being built. There's two flavours based on "today", the current date[^utc]:
 
 [^utc]: `verri` will **always** use the UTC timezone when dealing with dates and times, including counting the number of
-    seconds since midnight.
+    seconds or commits since midnight.
 
 - :mango:, or `verri.tasty:mango`: an ISO-formatted date, without leading zeroes to make it PEP-440 compliant;
 - :cherries:, or `verri.tasty:cherry`: similar to the :mango:, but adding the number of seconds since midnight to avoid
@@ -66,8 +66,8 @@ same commit. `verri` provides that exact thing in two different flavours:
 So when the merge commit of the latest feature was made on the 3rd of April 2026, our :strawberry: version would be
 *2026.3.4.0*, or *2026.3.4.1* if it wasn't the first, and so on. A :pineapple: version will omit the final *.0*, but
 number subsequent releases on the same day in the same way. Any build using a :pineapple: version not being performed on
-a CI/CD environment, however, would result in a version like *2026.3.4+a1b2c3d*, referencing the commit hash for the
-commit being built instead.
+a CI/CD environment, however, would result in a version like *2026.3.4.dev1+a1b2c3d*, referencing the commit hash for
+the commit being built instead and putting the commit counter for the day up as a development version.
 
 Additionally, both :strawberry: and :pineapple: flavours will mark the version with a `+dirty`
 [local identifier](https://packaging.python.org/en/latest/specifications/version-specifiers/#local-version-identifiers)

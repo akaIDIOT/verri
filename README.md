@@ -8,9 +8,12 @@ like this:
 requires = ["pdm-backend", "verri"]
 build-backend = "pdm.backend"
 
+[project]
+dynamic = ["version"]
+
 [tool.pdm.version]
 source = "call"
-getter = "verri.tasty:strawberry"
+getter = "verri.tasty:pineapple"
 ```
 
 More to follow. Maybe. It was trying to be simple, remember.

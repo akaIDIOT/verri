@@ -44,6 +44,6 @@ point in time, and you don't want to have to think about it again, verri could b
 semantically meaningful version or want to control the version number manually, verri might not be great for you.
 
 `verri` was created with `pdm-backend` in mind, so deliberately exposes it's flavours as callable functions. See
-[`pdm-backed`'s documentation](https://backend.pdm-project.org/metadata/#dynamic-project-version) for more information
+[`pdm-backend`'s documentation](https://backend.pdm-project.org/metadata/#dynamic-project-version) for more information
 on how this can be configured for your project. Other build systems might be able to use verri as well; there's no
 dependencies on PDM anywhere, and the versions are simple Python functions.

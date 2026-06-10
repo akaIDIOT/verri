@@ -93,7 +93,7 @@ def test_resolve_short(inside_repo, repo, expected_feedback, commit):
         ('09-new-commit-date.tar.gz', None),
         ('10-clone-depth-1.tar.gz', {'f5a01947a265449f7da7b6a472a39e2cb1364248'}),
         ('11-clone-depth-3.tar.gz', {'f586083f8852be4c8bef296bf97c0956f719abbd'}),
-    ]
+    ],
 )
 def test_shallow_refs(inside_repo, repo, expected_refs):
     with inside_repo(repo):

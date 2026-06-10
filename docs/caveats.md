@@ -48,14 +48,18 @@ be marked dirty.
 
 Continuing with the requirement to interrogate `git` during version creation, many build systems will create a shallow
 checkout of the source code for your project. Although this contains all of the code for a project, it can mean that
-information `verri` requires for counting commits is missing, and an incorrect version is produced. This is an
-unresolved issue at the time of writing, which should be tackled somewhere in the future, though this will likely always
-result in issues as required information is simply not available. A fix for this is simple, however: ensure that enough
-history is provided at build time. CI/CD systems often allow you to configure this as the *fetch depth*. Setting this to
-0 will often fetch all history, which can be expensive for large projects. As `verri` only needs to count the number of
-commits on the same day as the commit being built, setting this to a positive number high enough to cover the expected
-number of merges / commits on a day should suffice. The value of that number depends on the project being built, of
-course.
+information `verri` requires for counting commits is missing, and an incorrect version would be produced. As such
+`verri` will **require** that no commits that would be counted towards the number of commits since a particular date (in
+practice: the date of `HEAD`) are treated as [shallow](https://git-scm.com/docs/shallow) by `git`. This situation will
+trigger a fallback version with a mark noting the version control information was too shallow (see
+[error handling](#error-handling)).
+
+A fix for this is simple, however:
+ensure that enough history is provided at build time. CI/CD systems often allow you to configure this as the
+*fetch depth*. Setting this to 0 will often fetch all history, which can be expensive for large projects. As `verri`
+only needs to count the number of commits on the same day as the commit being built, setting this to a positive number
+high enough to cover the expected number of merges / commits on a day plus one should suffice (so, take a bit of
+margin). The value of that number depends on the project being built, of course.
 
 ## Changelogs
 

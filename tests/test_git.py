@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from verri import dates, git
-from verri.errors import CommandNotFound, NoRepository
+from verri.errors import CommandNotFound, NoRepository, RepositoryTooShallow
 
 
 def test_commit_ts(inside_repo):
@@ -24,24 +24,28 @@ def test_commit_ts_mismatching_author_date(inside_repo):
 
 
 @pytest.mark.parametrize(
-    ('repo', 'num_commits'),
+    ('repo', 'expected_feedback', 'num_commits'),
     [
-        # NB: all commits in the repositories used here were made on the same day, 2026-04-27 (see repos/README.md)
-        ('02-initial-commit.tar.gz', 1),
-        ('03-two-commits.tar.gz', 2),
+        ('02-initial-commit.tar.gz', nullcontext(), 1),
+        ('03-two-commits.tar.gz', nullcontext(), 2),
         # commits on the current branch count as normal
-        ('04-feature-branch.tar.gz', 3),
-        ('05-feature-branch-two-commits.tar.gz', 4),
+        ('04-feature-branch.tar.gz', nullcontext(), 3),
+        ('05-feature-branch-two-commits.tar.gz', nullcontext(), 4),
         # commits are counted along the 'first-parent' path; commits on main in this case
-        ('06-merge-feature-branch.tar.gz', 3),
+        ('06-merge-feature-branch.tar.gz', nullcontext(), 3),
         # whether the repository is clean does not matter when counting commits
-        ('07-dirty.tar.gz', 3),
+        ('07-dirty.tar.gz', nullcontext(), 3),
         # author date should not matter, commit was made on the same day
-        ('08-authored-2001.tar.gz', 4),
+        ('08-authored-2001.tar.gz', nullcontext(), 4),
+        ('09-new-commit-date.tar.gz', nullcontext(), 1),
+        # clone depth 1 will report the single commit on that day as shallow, should raise
+        ('10-clone-depth-1.tar.gz', pytest.raises(RepositoryTooShallow, match='f5a0194'), None),
+        # still shallow, but the only commit on the commit date is not shallow, should be fine
+        ('11-clone-depth-3.tar.gz', nullcontext(), 1),
     ],
 )
-def test_num_commits_since(inside_repo, repo, num_commits):
-    with inside_repo(repo):
+def test_num_commits_since(inside_repo, repo, expected_feedback, num_commits):
+    with inside_repo(repo), expected_feedback:
         commit_day = dates.midnight(git.commit_ts())
         assert git.num_commits_since(commit_day) == num_commits
 
@@ -81,6 +85,19 @@ def test_resolve_short(inside_repo, repo, expected_feedback, commit):
     with inside_repo(repo), expected_feedback:
         assert git.resolve('HEAD').startswith(commit)
         assert git.short() == commit
+
+
+@pytest.mark.parametrize(
+    ('repo', 'expected_refs'),
+    [
+        ('09-new-commit-date.tar.gz', None),
+        ('10-clone-depth-1.tar.gz', {'f5a01947a265449f7da7b6a472a39e2cb1364248'}),
+        ('11-clone-depth-3.tar.gz', {'f586083f8852be4c8bef296bf97c0956f719abbd'}),
+    ]
+)
+def test_shallow_refs(inside_repo, repo, expected_refs):
+    with inside_repo(repo):
+        assert git.shallow_refs() == expected_refs
 
 
 def test_no_git():

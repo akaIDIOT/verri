@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/configure-pages@v6
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 10
       - uses: pdm-project/setup-pdm@v4
         with:
           python-version: '3.14'

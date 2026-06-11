@@ -1,7 +1,8 @@
 import subprocess
+from pathlib import Path
 
 from verri import dates, environments
-from verri.errors import CommandNotFound, NoRepository
+from verri.errors import CommandNotFound, NoRepository, RepositoryTooShallow
 
 
 def commit_ts(ref='HEAD'):
@@ -10,11 +11,16 @@ def commit_ts(ref='HEAD'):
 
 
 def num_commits_since(ts):
-    return len(
-        git('log', '--first-parent', f'--since={int(ts.timestamp())}', '--format=%cd', '--date=unix').splitlines(
-            keepends=False
-        )
+    commits = git('log', '--first-parent', f'--since={int(ts.timestamp())}', '--format=%H', '--date=unix').splitlines(
+        keepends=False
     )
+
+    if commits and (shallow := shallow_refs()) and commits[-1] in shallow:
+        # oldest commit that is included with the --since filter is shallow, unable to check whether there *should* be
+        # more commits that would match the --since filter, refuse an unclear commit count
+        raise RepositoryTooShallow(commits[-1])
+
+    return len(commits)
 
 
 def clean():
@@ -41,6 +47,15 @@ def short(ref='HEAD'):
         return ref[:7]
     else:
         return short(resolve(ref))
+
+
+def shallow_refs():
+    git_dir = git('rev-parse', '--git-dir')
+    if (shallow := Path(git_dir) / 'shallow').exists():
+        # .git/shallow exists, listing refs that are treated as shallow
+        return set(shallow.read_text().splitlines(keepends=False))
+    else:
+        return None
 
 
 def git(*args):

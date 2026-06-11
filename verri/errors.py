@@ -4,3 +4,7 @@ class CommandNotFound(FileNotFoundError):
 
 class NoRepository(ValueError):
     version_local = 'vcs.missing'
+
+
+class RepositoryTooShallow(ValueError):
+    version_local = 'vcs.too.shallow'

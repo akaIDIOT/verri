@@ -42,6 +42,9 @@ def test_cherry_flavour(time, version):
         ('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
         ('07-dirty.tar.gz', nullcontext(), '2026.4.27.2+dirty'),
         ('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.3'),
+        ('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.0'),
+        ('10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'),
+        ('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.0'),
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')
@@ -62,6 +65,9 @@ def test_strawberry_flavour(inside_repo, repo, context, version):
         ('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+f586083'),
         ('07-dirty.tar.gz', nullcontext(), '2026.4.27.dev3+dirty'),
         ('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.dev4+8ffcba0'),
+        ('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
+        ('10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'),
+        ('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')

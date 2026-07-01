@@ -8,6 +8,14 @@ site_dir = "site/"
 nav = [
     {"Geting started" = "index.md"},
     {"Caveats" = "caveats.md"},
+    {"API Reference" = [
+        "reference/verri.tasty.md",
+        "reference/verri.md",
+        "reference/verri.dates.md",
+        "reference/verri.git.md",
+        "reference/verri.environments.md",
+        "reference/verri.errors.md",
+    ]},
 ]
 
 [[project.extra.social]]
@@ -94,3 +102,17 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
+
+[project.plugins.mkdocstrings.handlers.python]
+inventories = ["https://docs.python.org/3/objects.inv"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+filters = "public"
+inherited_members = true
+parameter_headings = true
+show_if_no_docstring = true
+show_root_heading = true
+show_root_members_full_path = true
+show_source = true
+show_symbol_type_heading = true
+show_symbol_type_toc = true

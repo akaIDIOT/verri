@@ -1,6 +1,6 @@
 [project]
 site_name = "Verri Documented"
-site_description = "Verri version, such flavour, wow — simple CalVer for Python"
+site_description = "Verri version, such flavour, wow — simple CalVer for Python packages"
 site_author = "akaIDIOT"
 site_url = "https://akaidiot.github.io/verri/"
 docs_dir = "docs/"
@@ -16,7 +16,7 @@ link = "https://github.com/akaIDIOT/verri"
 
 [project.theme]
 language = "en"
-#logo = "assets/logo.png"
+logo = "assets/verri.svg"
 features = [
     "announce.dismiss",
 #    "content.action.edit",
@@ -37,8 +37,8 @@ features = [
     "navigation.path",
 #    "navigation.prune",
     "navigation.sections",
-#    "navigation.tabs",
-#    "navigation.tabs.sticky",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
     "navigation.top",
     "navigation.tracking",
     "search.highlight",
@@ -86,7 +86,7 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.smartsymbols]
 [project.markdown_extensions.pymdownx.superfences]
 custom_fences = [
-  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+    {name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format"}
 ]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true

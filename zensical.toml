@@ -1,6 +1,6 @@
 [project]
 site_name = "Verri Documented"
-site_description = "Verri version, such flavour, wow — simple CalVer for Python"
+site_description = "Verri version, such flavour, wow — simple CalVer for Python packages"
 site_author = "akaIDIOT"
 site_url = "https://akaidiot.github.io/verri/"
 docs_dir = "docs/"
@@ -8,6 +8,14 @@ site_dir = "site/"
 nav = [
     {"Geting started" = "index.md"},
     {"Caveats" = "caveats.md"},
+    {"API Reference" = [
+        "reference/verri.tasty.md",
+        "reference/verri.md",
+        "reference/verri.dates.md",
+        "reference/verri.git.md",
+        "reference/verri.environments.md",
+        "reference/verri.errors.md",
+    ]},
 ]
 
 [[project.extra.social]]
@@ -16,38 +24,28 @@ link = "https://github.com/akaIDIOT/verri"
 
 [project.theme]
 language = "en"
-#logo = "assets/logo.png"
+logo = "assets/verri.svg"
 features = [
     "announce.dismiss",
-#    "content.action.edit",
-#    "content.action.view",
     "content.code.annotate",
     "content.code.copy",
     "content.code.select",
     "content.footnote.tooltips",
     "content.tabs.link",
     "content.tooltips",
-#    "header.autohide",
-#    "navigation.expand",
     "navigation.footer",
     "navigation.indexes",
     "navigation.instant",
     "navigation.instant.prefetch",
-#    "navigation.instant.progress",
     "navigation.path",
-#    "navigation.prune",
     "navigation.sections",
-#    "navigation.tabs",
-#    "navigation.tabs.sticky",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
     "navigation.top",
     "navigation.tracking",
     "search.highlight",
     "toc.follow",
-#    "toc.integrate",
 ]
-
-#[project.theme.icon]
-#logo = "lucide/smile"
 
 [[project.theme.palette]]
 scheme = "default"
@@ -86,7 +84,7 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.smartsymbols]
 [project.markdown_extensions.pymdownx.superfences]
 custom_fences = [
-  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+    {name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format"}
 ]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
@@ -94,3 +92,17 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
+
+[project.plugins.mkdocstrings.handlers.python]
+inventories = ["https://docs.python.org/3/objects.inv"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+filters = "public"
+inherited_members = true
+parameter_headings = true
+show_if_no_docstring = true
+show_root_heading = true
+show_root_members_full_path = true
+show_source = true
+show_symbol_type_heading = true
+show_symbol_type_toc = true

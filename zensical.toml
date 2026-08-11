@@ -27,23 +27,17 @@ language = "en"
 logo = "assets/verri.svg"
 features = [
     "announce.dismiss",
-#    "content.action.edit",
-#    "content.action.view",
     "content.code.annotate",
     "content.code.copy",
     "content.code.select",
     "content.footnote.tooltips",
     "content.tabs.link",
     "content.tooltips",
-#    "header.autohide",
-#    "navigation.expand",
     "navigation.footer",
     "navigation.indexes",
     "navigation.instant",
     "navigation.instant.prefetch",
-#    "navigation.instant.progress",
     "navigation.path",
-#    "navigation.prune",
     "navigation.sections",
     "navigation.tabs",
     "navigation.tabs.sticky",
@@ -51,11 +45,7 @@ features = [
     "navigation.tracking",
     "search.highlight",
     "toc.follow",
-#    "toc.integrate",
 ]
-
-#[project.theme.icon]
-#logo = "lucide/smile"
 
 [[project.theme.palette]]
 scheme = "default"

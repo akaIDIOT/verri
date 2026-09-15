@@ -37,8 +37,8 @@ you're interested in the options, the why and things to look out for, read on.
 ## Choosing a flavour
 
 Looking at the example `pyproject.toml` snippet above, the actual version being determined at build time is `verri`'s
-"pineapple" flavour; tasty! `verri` currently provies 4 flavours, based either on the current date, or on the date of
-the commit being built. There's two flavours based on "today", the current date[^utc]:
+"pineapple" flavour; tasty! `verri` currently provides 4 flavours, based either on the date of the commit being built,
+or simply on the current date. There's two flavours based on "today", the current date[^utc]:
 
 [^utc]: `verri` will **always** use the UTC timezone when dealing with dates and times, including counting the number of
     seconds or commits since midnight.

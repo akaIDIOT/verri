@@ -27,6 +27,12 @@ def test_midnight_specific_date(tz_eu_ams):
     assert midnight.hour == midnight.minute == midnight.second == midnight.microsecond == 0
 
 
+def test_midnight_naive():
+    ts = dt.datetime.now(tz=None)
+    with pytest.raises(ValueError, match='timezone aware'):
+        dates.midnight(ts)
+
+
 def test_timezone_roundtrip(tz_eu_ams):
     now_ams = dates.now().astimezone(tz_eu_ams)
     ts = dates.from_ts(now_ams.timestamp())

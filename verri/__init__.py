@@ -11,6 +11,14 @@ _FALLBACK_VERSION = '0.0+unable.to.determine.version'
 
 
 def version(func=None, /, *, fallback=None):
+    """
+    Decorator that will validate a resulting version is PEP-440 compliant, optionally resorting to a fallback value.
+
+    :param func: The function to decorate.
+    :param fallback: A fallback version, either a `str` value or a `Callable` that returns a `str`.
+    :return: A PEP-440 compliant version.
+    """
+
     def validate(*args, **kwargs):
         try:
             value = func(*args, **kwargs)

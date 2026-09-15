@@ -9,8 +9,8 @@ nav = [
     {"Wow" = "index.md"},
     {"Caveats" = "caveats.md"},
     {"API Reference" = [
-        "reference/verri.version.md",
         "reference/verri.tasty.md",
+        "reference/verri.version.md",
         "reference/verri.dates.md",
         "reference/verri.git.md",
         "reference/verri.environments.md",

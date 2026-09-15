@@ -37,8 +37,8 @@ you're interested in the options, the why and things to look out for, read on.
 ## Choosing a flavour
 
 Looking at the example `pyproject.toml` snippet above, the actual version being determined at build time is `verri`'s
-"pineapple" flavour; tasty! `verri` currently provides 4 flavours, based either on the current date, or on the date of
-the commit being built. There's two flavours based on "today", the current date[^utc]:
+"pineapple" flavour; tasty! `verri` currently provides 4 flavours, based either on the date of the commit being built,
+or simply on the current date. There's two flavours based on "today", the current date[^utc]:
 
 - :mango:, or `verri.tasty:mango`: an ISO-formatted date, without leading zeroes to make it PEP-440 compliant;
 - :cherries:, or `verri.tasty:cherry`: similar to the :mango:, but adding the number of seconds since midnight to avoid

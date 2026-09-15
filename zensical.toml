@@ -6,11 +6,11 @@ site_url = "https://akaidiot.github.io/verri/"
 docs_dir = "docs/"
 site_dir = "site/"
 nav = [
-    {"Geting started" = "index.md"},
+    {"Wow" = "index.md"},
     {"Caveats" = "caveats.md"},
     {"API Reference" = [
+        "reference/verri.version.md",
         "reference/verri.tasty.md",
-        "reference/verri.md",
         "reference/verri.dates.md",
         "reference/verri.git.md",
         "reference/verri.environments.md",
@@ -45,7 +45,11 @@ features = [
     "navigation.tracking",
     "search.highlight",
     "toc.follow",
+    "toc.integrate",
 ]
+
+[project.theme.icon]
+logo = "assets/verri.svg"
 
 [[project.theme.palette]]
 scheme = "default"
@@ -97,12 +101,16 @@ custom_checkbox = true
 inventories = ["https://docs.python.org/3/objects.inv"]
 
 [project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "sphinx"
 filters = "public"
 inherited_members = true
+members_order = "source"
 parameter_headings = true
 show_if_no_docstring = true
+show_root_full_path = true
 show_root_heading = true
 show_root_members_full_path = true
+show_signature_annotations = true
 show_source = true
 show_symbol_type_heading = true
 show_symbol_type_toc = true

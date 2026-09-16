@@ -69,6 +69,7 @@ toggle.name = "Switch to light mode"
 [project.markdown_extensions.md_in_html]
 [project.markdown_extensions.toc]
 permalink = true
+toc_depth = 2
 [project.markdown_extensions.pymdownx.arithmatex]
 generic = true
 [project.markdown_extensions.pymdownx.betterem]

@@ -23,6 +23,7 @@ check = [
     "rumdl",
 ]
 docs = [
+    "mkdocstrings-python",
     "zensical",
 ]
 test = [

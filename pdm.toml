@@ -4,3 +4,7 @@ url = "https://pypi.org/simple"
 
 [lock]
 format = "pylock"
+
+[install]
+# avoid symlinking dependencies in the development venv, see https://github.com/zensical/zensical/issues/786
+cache = false

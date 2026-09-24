@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 from verri import dates, environments
-from verri.errors import CommandNotFound, NoRepository, RepositoryTooShallow
+from verri.errors import CommandError, NoRepository, RepositoryTooShallow
 
 
 def commit_ts(ref='HEAD'):
@@ -62,10 +62,14 @@ def git(*args):
     try:
         return subprocess.check_output(('git', *args), stderr=subprocess.PIPE, text=True).strip()
     except FileNotFoundError as e:
-        raise CommandNotFound('git') from e
+        raise CommandError('git') from e
     except subprocess.CalledProcessError as e:
-        if e.returncode == 128:
-            # specific return code for "fatal: not a git repository"
-            raise NoRepository(e.stderr.strip() if e.stderr else None) from e
-        else:
-            raise
+        error = e.stderr.strip() if e.stderr else None
+        if e.returncode == 128 and error:
+            if 'not a git repository' in error:
+                # specific return code for "fatal: not a git repository"
+                raise NoRepository(error) from e
+            # another git error
+            raise CommandError(error) from e
+        # git might have failed for another reason, continue original error
+        raise

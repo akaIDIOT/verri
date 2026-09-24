@@ -1,4 +1,4 @@
-class CommandNotFound(FileNotFoundError):
+class CommandError(FileNotFoundError):
     version_local = 'vcs.error'
 
 

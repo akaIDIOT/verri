@@ -34,7 +34,7 @@ def test_cherry_flavour(time, version):
     ('repo', 'context', 'version'),
     [
         ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
+        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
         ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.0'),
         ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
         ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
@@ -57,7 +57,7 @@ def test_strawberry_flavour(inside_repo, repo, context, version):
     ('repo', 'expected_feedback', 'version'),
     [
         ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
+        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
         ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.dev1+2de5e2d'),
         ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.dev2+eb9a1ee'),
         ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),
@@ -80,7 +80,7 @@ def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, rep
     ('repo', 'expected_feedback', 'version'),
     [
         ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
+        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
         ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27'),
         ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
         ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),

@@ -3,15 +3,19 @@ dynamic = ["version"]
 name = "verri"
 import-names = ["verri"]
 description = "Verri version, such flavour, wow"
+keywords = ["calver", "pep-440", "pdm", "pdm-backend", "version"]
 readme = "README.md"
+license = "EUPL-1.2"
 authors = [
     {name = "Mattijs Ugen", email = "144798+akaIDIOT@users.noreply.github.com"},
+]
+maintainers = [
+    {name = "Mattijs Ugen"},
 ]
 dependencies = [
     "packaging>=26.0",
 ]
 requires-python = ">=3.10"
-license = {text = "EUPL-1.2"}
 
 [project.urls]
 Docs = "https://akaidiot.github.io/verri/"

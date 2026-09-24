@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from verri import dates, git
-from verri.errors import CommandNotFound, NoRepository, RepositoryTooShallow
+from verri.errors import CommandError, NoRepository, RepositoryTooShallow
 
 
 def test_commit_ts(inside_repo):
@@ -75,7 +75,7 @@ def test_branch(inside_repo, repo, branch):
     ('repo', 'expected_feedback', 'commit'),
     [
         ('00-no-repository.tar.gz', pytest.raises(NoRepository, match='not a git repository'), None),
-        ('01-init-no-commits.tar.gz', pytest.raises(NoRepository, match='ambiguous argument'), None),
+        ('01-init-no-commits.tar.gz', pytest.raises(CommandError, match='ambiguous argument'), None),
         ('02-initial-commit.tar.gz', nullcontext(), '2de5e2d'),
         ('04-feature-branch.tar.gz', nullcontext(), 'd1a9df9'),
         ('07-dirty.tar.gz', nullcontext(), 'f586083'),
@@ -103,7 +103,7 @@ def test_shallow_refs(inside_repo, repo, expected_refs):
 def test_no_git():
     with patch.object(git.subprocess, 'check_output') as check_output:
         check_output.side_effect = FileNotFoundError('/usr/bin/git')
-        with pytest.raises(CommandNotFound, match='git'):
+        with pytest.raises(CommandError, match='git'):
             git.git('--version')
 
 

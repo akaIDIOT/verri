@@ -6,7 +6,7 @@ site_url = "https://akaidiot.github.io/verri/"
 docs_dir = "docs/"
 site_dir = "site/"
 nav = [
-    {"Geting started" = "index.md"},
+    {"Getting started" = "index.md"},
     {"Caveats" = "caveats.md"},
 ]
 

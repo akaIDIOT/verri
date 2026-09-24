@@ -1,9 +1,13 @@
 *.py[codz]
 __pycache__/
+.cache/
 .coverage
 .mypy_cache/
+.pdm-build/
 .pdm-python
 .pytest_cache/
 .ruff_cache/
 .rumdl_cache/
+.venv/
+dist/
 site/

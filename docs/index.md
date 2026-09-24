@@ -21,7 +21,7 @@ source = "call"
 getter = "verri.tasty:pineapple"  # such flavour (3)
 ```
 
-1. Add `verri` tot the list of required dependencies for the build system, so any tool you're using to install
+1. Add `verri` to the list of required dependencies for the build system, so any tool you're using to install
    your project will know to install both `pdm-backend` and `verri` before letting `pdm.backend` build your project.
 
 2. Declare the version of the project to be dynamic, telling the build backend (`pdm-backend` in this case) to expect
@@ -37,11 +37,8 @@ you're interested in the options, the why and things to look out for, read on.
 ## Choosing a flavour
 
 Looking at the example `pyproject.toml` snippet above, the actual version being determined at build time is `verri`'s
-"pineapple" flavour; tasty! `verri` currently provies 4 flavours, based either on the current date, or on the date of
+"pineapple" flavour; tasty! `verri` currently provides 4 flavours, based either on the current date, or on the date of
 the commit being built. There's two flavours based on "today", the current date[^utc]:
-
-[^utc]: `verri` will **always** use the UTC timezone when dealing with dates and times, including counting the number of
-    seconds or commits since midnight.
 
 - :mango:, or `verri.tasty:mango`: an ISO-formatted date, without leading zeroes to make it PEP-440 compliant;
 - :cherries:, or `verri.tasty:cherry`: similar to the :mango:, but adding the number of seconds since midnight to avoid
@@ -61,8 +58,8 @@ same commit. `verri` provides that exact thing in two different flavours:
 - :pineapple:, or `verri.tasty:pineapple`: similar to the :strawberry:, with the added requirement that only a "release"
   version will be created if the build is being performed
     1. on a CI/CD environment (like GitHub Actions, or GitLab CI/CD, determined through environment variables);
-    1. while the repository is clean, no files that are tracked by `git` are modified when the version is determined;
-    1. on the project's default branch (either the explicitly configured one, or `main` / `master`).
+    2. while the repository is clean, no files that are tracked by `git` are modified when the version is determined;
+    3. on the project's default branch (either the explicitly configured one, or `main` / `master`).
 
 So when the merge commit of the latest feature was made on the 3rd of April 2026, our :strawberry: version would be
 **2026.3.4.0**, or **2026.3.4.1** if it wasn't the first, and so on. A :pineapple: version will omit the final **.0**,
@@ -89,3 +86,6 @@ determining what version to use in which circumstances, made the names of these 
 explain `isodate_num_or_commit_when_local` to others, the template names took the complete opposite direction and
 started using names that are easy to say and remember, even if they are meaningless on their own. Using the names of
 fruit, it's clear that these functions have something in common, and it allows `verri` to call them tasty :yum:
+
+[^utc]: `verri` will **always** use the UTC timezone when dealing with dates and times, including counting the number of
+    seconds or commits since midnight.

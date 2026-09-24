@@ -1,7 +1,7 @@
 from verri import environments
 
 
-def test_emtpy_environ(empty_environment):
+def test_empty_environ(empty_environment):
     assert environments.on_ci() is False
     assert environments.ci() is None
     assert environments.ci_current_branch() is None

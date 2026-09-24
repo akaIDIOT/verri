@@ -79,6 +79,9 @@ respect-gitignore = true
 [tool.rumdl.MD013]
 reflow = true
 
+[tool.rumdl.MD029]
+style = "ordered"
+
 [build-system]
 # NB: using pdm-backend's own trick to allow a project depend on itself during a build
 #     normally, verri should be added to the requires field and the build-backend should be "pdm.backend"

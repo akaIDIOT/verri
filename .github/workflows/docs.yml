@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 10
       - uses: pdm-project/setup-pdm@v4
         with:
-          python-version: '3.14'
+          python-version: '3.15'
       - run: pdm install --group docs
       - run: pdm run docs
       - uses: actions/upload-pages-artifact@v5

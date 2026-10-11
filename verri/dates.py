@@ -16,7 +16,7 @@ def now() -> dt.datetime:
 
     :return: The current date and time in UTC, timezone-aware.
     """
-    return dt.datetime.now(tz=dt.timezone.utc)
+    return dt.datetime.now(tz=dt.UTC)
 
 
 def midnight(ts: dt.datetime | None = None) -> dt.datetime:
@@ -41,4 +41,4 @@ def from_ts(ts: int | float) -> dt.datetime:
     :param ts: A point in time, measured in seconds since the UNIX epoch.
     :return: A `datetime` instance in UTC.
     """
-    return dt.datetime.fromtimestamp(ts, tz=dt.timezone.utc)
+    return dt.datetime.fromtimestamp(ts, tz=dt.UTC)

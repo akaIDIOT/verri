@@ -11,13 +11,13 @@ from verri.errors import CommandError, NoRepository, RepositoryTooShallow
 
 def test_commit_ts(inside_repo):
     with inside_repo('06-merge-feature-branch.tar.gz'):
-        ts = dt.datetime(2026, 4, 27, 16, 45, 56, tzinfo=dt.timezone.utc)
+        ts = dt.datetime(2026, 4, 27, 16, 45, 56, tzinfo=dt.UTC)
         assert git.commit_ts('HEAD') == git.commit_ts('main') == git.commit_ts('f586083') == ts
 
 
 def test_commit_ts_mismatching_author_date(inside_repo):
     with inside_repo('08-authored-2001.tar.gz'):
-        ts = dt.datetime(2026, 4, 27, 17, 54, 44, tzinfo=dt.timezone.utc)
+        ts = dt.datetime(2026, 4, 27, 17, 54, 44, tzinfo=dt.UTC)
         # NB: using --format=%ad for author date, as opposed to --format=%cd for commit date
         assert dates.from_ts(int(git.git('show', '--quiet', '--format=%ad', '--date=unix', 'HEAD'))) != ts
         assert git.commit_ts() == ts

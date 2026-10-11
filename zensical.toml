@@ -3,6 +3,8 @@ site_name = "Verri Documented"
 site_description = "Verri version, such flavour, wow — simple CalVer for Python packages"
 site_author = "akaIDIOT"
 site_url = "https://akaidiot.github.io/verri/"
+repo_name = "akaIDIOT/verri"
+repo_url = "https://github.com/akaIDIOT/verri"
 docs_dir = "docs/"
 site_dir = "site/"
 nav = [
@@ -23,6 +25,7 @@ icon = "fontawesome/brands/github"
 link = "https://github.com/akaIDIOT/verri"
 
 [project.theme]
+favicon = "assets/verri.svg"
 language = "en"
 logo = "assets/verri.svg"
 features = [
@@ -49,7 +52,7 @@ features = [
 ]
 
 [project.theme.icon]
-logo = "assets/verri.svg"
+repo = "fontawesome/brands/git-alt"
 
 [[project.theme.palette]]
 scheme = "default"

@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 10
       - uses: pdm-project/setup-pdm@v4
         with:
-          python-version: '3.14'
+          python-version: '3.15'
       - run: pdm install --group check
       - run: pdm run check
       - run: pdm build --no-sdist

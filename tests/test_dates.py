@@ -16,7 +16,7 @@ def test_midnight_zeroes():
     ts = dates.midnight()
 
     assert ts.hour == ts.minute == ts.second == ts.microsecond == 0
-    assert ts.tzinfo == dt.timezone.utc
+    assert ts.tzinfo == dt.UTC
 
 
 def test_midnight_specific_date(tz_eu_ams):

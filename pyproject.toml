@@ -61,6 +61,8 @@ fix = {composite = [
 ]}
 test = {composite = [
     "coverage run --branch --source verri --module pytest tests/",
+    # run verri's own module entry point through coverage to make sure that works and is covered
+    "coverage run --append --branch --source verri --module verri tasty pineapple",
     "coverage report",
 ]}
 

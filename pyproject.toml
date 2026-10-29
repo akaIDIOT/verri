@@ -16,6 +16,7 @@ dependencies = [
     "packaging>=26.0",
 ]
 requires-python = ">=3.11"
+scripts = {verri = "verri.console:main"}
 
 [project.urls]
 Docs = "https://akaidiot.github.io/verri/"

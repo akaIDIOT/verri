@@ -101,3 +101,6 @@ def pineapple():
             return f'{commit_version}.{n - 1}'
         case _:
             return f'{commit_version}.dev{n}+{git.short(ref) if git.clean() else "dirty"}'
+
+
+__all__ = sorted(('mango', 'cherry', 'strawberry', 'pineapple'))

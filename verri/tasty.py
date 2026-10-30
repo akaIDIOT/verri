@@ -12,7 +12,6 @@ def mango():
     `yyyy.mm.dd`, without leading zeroes.
 
     !!! warning
-
         This flavour takes nothing but the current date into account, potentially creating the same version number for
         multiple releases made on the same day.
     """
@@ -27,7 +26,6 @@ def cherry():
     since [midnight][verri.dates.midnight].
 
     !!! warning
-
         Depending on your build system, and the speed at which your project gets built, constructing different versions
         during the same build process can cause issues. Use with caution.
     """
@@ -45,7 +43,6 @@ def strawberry():
     formatted as `yyyy.mm.dd.n`, where `n` is the number of other first parent commits than `HEAD` on the same date.
 
     !!! fallback
-
         This flavour will fall back to [`mango`][verri.tasty.mango] flavour on error, see
         [error handling](caveats.md#error-handling).
     """
@@ -75,7 +72,6 @@ def pineapple():
     If not, a development version number will be created.
 
     !!! fallback
-
         This flavour will fall back to [`mango`][verri.tasty.mango] flavour on error, see
         [error handling](caveats.md#error-handling).
     """

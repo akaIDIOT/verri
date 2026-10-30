@@ -45,5 +45,11 @@ semantically meaningful version or want to control the version number manually, 
 
 `verri` was created with `pdm-backend` in mind, so deliberately exposes its flavours as callable functions. See
 [`pdm-backend`'s documentation](https://backend.pdm-project.org/metadata/#dynamic-project-version) for more information
-on how this can be configured for your project. Other build systems might be able to use verri as well; there's no
+on how this can be configured for your project. Other build systems might be able to use `verri` as well; there's no
 dependencies on PDM anywhere, and the versions are simple Python functions.
+
+Alternatively, verri also exposes a commandline interface:
+
+```console
+verri tasty pineapple
+```

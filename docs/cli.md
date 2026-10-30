@@ -12,8 +12,8 @@ $ verri tasty pineapple
 2026.1.2.dev1+a1b2c3d
 ```
 
-The `tasty` in this is a required argument, if only to keep things aligned with the naming of things oFn the Python
-side. When a command is used to create an argument to another command, the trailing newline that it outputs can be an
+The `tasty` in this is a required argument, if only to keep things aligned with the naming of things on the Python side.
+When a command is used to create an argument to another command, the trailing newline that it outputs can be an
 issue. The `-n` / `--no-newline` option is there to alleviate this, much like `echo` would:
 
 ```console

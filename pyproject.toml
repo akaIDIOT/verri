@@ -38,7 +38,7 @@ test = [
 
 [tool.pdm.version]
 source = "call"
-getter = "verri.tasty:strawberry"
+getter = "verri.tasty:pineapple"
 
 [tool.pdm.scripts]
 all = {composite = [

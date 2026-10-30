@@ -24,7 +24,7 @@ def main(args=None):
     # two positional arguments, the first of which is required to be "tasty", the second being the flavour
     parser.add_argument('tasty', metavar='tasty', choices=('tasty',))
     parser.add_argument('flavour', choices=tasty.__all__, help='a tasty version flavour')
-    # let argparse controle the validity of the command line options, (…)
+    # let argparse control the validity of the command line options, (…)
     args = parser.parse_args(args)
     # (…) assume the requested flavour attribute exists
     flavour = getattr(tasty, args.flavour)

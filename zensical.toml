@@ -9,7 +9,6 @@ docs_dir = "docs/"
 site_dir = "site/"
 nav = [
     {"Wow" = "index.md"},
-    {"Caveats" = "caveats.md"},
     {"API Reference" = [
         "reference/verri.tasty.md",
         "reference/verri.version.md",
@@ -18,6 +17,8 @@ nav = [
         "reference/verri.environments.md",
         "reference/verri.errors.md",
     ]},
+    {"CLI" = "cli.md"},
+    {"Caveats" = "caveats.md"},
 ]
 
 [[project.extra.social]]

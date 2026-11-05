@@ -1,8 +1,10 @@
+import inspect
 from contextlib import nullcontext
 
 import pytest
 from freezegun import freeze_time
 
+from verri import tasty
 from verri.tasty import cherry, mango, pineapple, strawberry
 
 
@@ -94,3 +96,13 @@ def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, rep
 def test_pineapple_flavour_on_ci(on_github_actions, inside_repo, repo, expected_feedback, version):
     with inside_repo(repo), expected_feedback:
         assert pineapple() == version
+
+
+def test_flavours_registered_to_all():
+    def is_tasty_function(obj):
+        return inspect.isfunction(obj) and obj.__module__ == 'verri.tasty'
+
+    names = {name for name, _ in inspect.getmembers(tasty, predicate=is_tasty_function)}
+
+    assert set(tasty.__all__) == names
+    assert tasty.__all__ == sorted(names)

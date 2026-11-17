@@ -63,6 +63,9 @@ test = {composite = [
     "coverage report",
 ]}
 
+[tool.python-sbom]
+repository = "https://github.com/akaIDIOT/verri/"
+
 [tool.ruff]
 format.quote-style = "single"
 lint.flake8-quotes.inline-quotes = "single"
@@ -86,5 +89,5 @@ style = "ordered"
 [build-system]
 # NB: using pdm-backend's own trick to allow a project depend on itself during a build
 #     normally, verri should be added to the requires field and the build-backend should be "pdm.backend"
-requires = ["pdm-backend"]
+requires = ["pdm-backend", "python-sbom[pdm]"]
 build-backend = "pdm.backend.intree"

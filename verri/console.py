@@ -27,5 +27,4 @@ def main(args=None):
     # let argparse control the validity of the command line options, (…)
     args = parser.parse_args(args)
     # (…) assume the requested flavour attribute exists
-    flavour = getattr(tasty, args.flavour)
-    print(flavour(), end=args.end)
+    print(getattr(tasty, args.flavour)(), end=args.end)

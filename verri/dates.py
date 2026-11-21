@@ -10,15 +10,6 @@ Utility functions related to dates and times.
 import datetime as dt
 
 
-def now() -> dt.datetime:
-    """
-    The current timezone-aware date and time, in UTC.
-
-    :return: The current date and time in UTC, timezone-aware.
-    """
-    return dt.datetime.now(tz=dt.UTC)
-
-
 def midnight(ts: dt.datetime | None = None) -> dt.datetime:
     """
     Midnight of the current or a specified date, in UTC.
@@ -32,6 +23,15 @@ def midnight(ts: dt.datetime | None = None) -> dt.datetime:
         raise ValueError('a timezone aware datetime is required')
 
     return ts.replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+def now() -> dt.datetime:
+    """
+    The current timezone-aware date and time, in UTC.
+
+    :return: The current date and time in UTC, timezone-aware.
+    """
+    return dt.datetime.now(tz=dt.UTC)
 
 
 def from_ts(ts: int | float) -> dt.datetime:

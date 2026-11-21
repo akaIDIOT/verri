@@ -111,7 +111,7 @@ def test_git_generic_error():
     with patch.object(git.subprocess, 'check_output') as check_output:
         error = CalledProcessError(cmd='git --version', returncode=123)
         check_output.side_effect = error
-        with pytest.raises(CalledProcessError) as e:
+        with pytest.raises(CalledProcessError) as error:
             git.git('--version')
 
-    assert e.value is error
+    assert error.value is error

@@ -106,6 +106,7 @@ select = [
     "SMP8",  # tests
     "SMP9",  # docstrings
 ]
+per-file-ignores = {"verri/__main__.py" = ["SMP106"]}  # avoid __name__ == '__main__' in … __main__.py}
 
 [build-system]
 # NB: using pdm-backend's own trick to allow a project depend on itself during a build

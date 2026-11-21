@@ -42,15 +42,15 @@ def git(*args):
     """
     try:
         return subprocess.check_output(('git', *args), stderr=subprocess.PIPE, text=True).strip()
-    except FileNotFoundError as e:
-        raise CommandError('git') from e
-    except subprocess.CalledProcessError as e:
-        error = e.stderr.strip() if e.stderr else None
-        if e.returncode == 128 and error:
+    except FileNotFoundError as error:
+        raise CommandError('git') from error
+    except subprocess.CalledProcessError as error:
+        message = error.stderr.strip() if error.stderr else None
+        if error.returncode == 128 and message:
             # 128 signals a fatal error from git
-            if 'not a git repository' in error:
-                raise NoRepository(error) from e
-            raise CommandError(error) from e
+            if 'not a git repository' in message:
+                raise NoRepository(message) from error
+            raise CommandError(message) from error
         # git might have failed for another reason, continue original error
         raise
 

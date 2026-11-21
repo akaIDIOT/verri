@@ -41,7 +41,7 @@ def version(func=None, /, *, fallback=None):
         try:
             value = func(*args, **kwargs)
             return str(parse(value))
-        except Exception as e:
+        except Exception as error:
             match fallback:
                 case None:
                     value = _FALLBACK_VERSION
@@ -53,7 +53,7 @@ def version(func=None, /, *, fallback=None):
                     raise TypeError(f'invalid fallback for version "{func.__name__}": {fallback!r}')
 
             value = parse(value)
-            if local := getattr(e, 'version_local', None):
+            if local := getattr(error, 'version_local', None):
                 # the error type provided a specific value for the local version component
                 # TODO: use copy.replace() when requires-python reaches >=3.13
                 value = value.__replace__(local=local)
@@ -63,7 +63,7 @@ def version(func=None, /, *, fallback=None):
                     f"""
                     WARNING: {__name__} failed to determine {func.__name__} version during build:
                     
-                        {e!r}
+                        {error!r}
                     
                     Using fallback version "{value}".
                     """

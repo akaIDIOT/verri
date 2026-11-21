@@ -48,16 +48,18 @@ all = {composite = [
     "test",
     "docs",
 ]}
-check = {composite = [
+check = {keep_going = true, composite = [
     "pdm lock --check",
     "ruff format --diff verri/ tests/",
     "ruff check verri/ tests/",
+    "simplint check verri/ tests/",
     "rumdl check",
 ]}
 docs = "zensical build --clean --strict"
 fix = {composite = [
     "ruff format verri/ tests/",
     "ruff check --fix verri/ tests/",
+    "simplint check --fix verri/ tests/",
     "rumdl fmt",
 ]}
 test = {composite = [

@@ -106,6 +106,10 @@ select = [
     "SMP8",  # tests
     "SMP9",  # docstrings
 ]
+ignore = [
+    "SMP504",  # allow single-use locals
+    "SMP505",  # allow single-use helper functions
+]
 per-file-ignores = {"verri/__main__.py" = ["SMP106"]}  # avoid __name__ == '__main__' in … __main__.py}
 
 [build-system]

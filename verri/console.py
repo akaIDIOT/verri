@@ -3,7 +3,7 @@ import argparse
 from verri import tasty
 
 
-def main(args=None):
+def main(args=None):  # noqa: SMP903 (function not aimed at users)
     parser = argparse.ArgumentParser(
         description=(
             'create a tasty, PEP-440 compliant version, '

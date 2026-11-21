@@ -8,6 +8,11 @@ from verri import tasty
 from verri.tasty import cherry, mango, pineapple, strawberry
 
 
+def identify_repo(repo, *values):
+    # a regular pytest param, identified by its first argument
+    return pytest.param(repo, *values, id=repo)
+
+
 @pytest.mark.parametrize(
     ('time', 'version'),
     [
@@ -35,18 +40,24 @@ def test_cherry_flavour(time, version):
 @pytest.mark.parametrize(
     ('repo', 'context', 'version'),
     [
-        ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
-        ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.0'),
-        ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
-        ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
-        ('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.3'),
-        ('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
-        ('07-dirty.tar.gz', nullcontext(), '2026.4.27.2+dirty'),
-        ('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.3'),
-        ('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.0'),
-        ('10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'),
-        ('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.0'),
+        identify_repo(
+            '00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'
+        ),
+        identify_repo(
+            '01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'
+        ),
+        identify_repo('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.0'),
+        identify_repo('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
+        identify_repo('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
+        identify_repo('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.3'),
+        identify_repo('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
+        identify_repo('07-dirty.tar.gz', nullcontext(), '2026.4.27.2+dirty'),
+        identify_repo('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.3'),
+        identify_repo('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.0'),
+        identify_repo(
+            '10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'
+        ),
+        identify_repo('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.0'),
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')
@@ -58,18 +69,24 @@ def test_strawberry_flavour(inside_repo, repo, context, version):
 @pytest.mark.parametrize(
     ('repo', 'expected_feedback', 'version'),
     [
-        ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
-        ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.dev1+2de5e2d'),
-        ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.dev2+eb9a1ee'),
-        ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),
-        ('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.dev4+07319e1'),
-        ('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+f586083'),
-        ('07-dirty.tar.gz', nullcontext(), '2026.4.27.dev3+dirty'),
-        ('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.dev4+8ffcba0'),
-        ('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
-        ('10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'),
-        ('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
+        identify_repo(
+            '00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'
+        ),
+        identify_repo(
+            '01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'
+        ),
+        identify_repo('02-initial-commit.tar.gz', nullcontext(), '2026.4.27.dev1+2de5e2d'),
+        identify_repo('03-two-commits.tar.gz', nullcontext(), '2026.4.27.dev2+eb9a1ee'),
+        identify_repo('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),
+        identify_repo('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.dev4+07319e1'),
+        identify_repo('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+f586083'),
+        identify_repo('07-dirty.tar.gz', nullcontext(), '2026.4.27.dev3+dirty'),
+        identify_repo('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.dev4+8ffcba0'),
+        identify_repo('09-new-commit-date.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
+        identify_repo(
+            '10-clone-depth-1.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.too.shallow'
+        ),
+        identify_repo('11-clone-depth-3.tar.gz', nullcontext(), '2026.6.10.dev1+f5a0194'),
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')
@@ -81,15 +98,19 @@ def test_pineapple_flavour_empty_environment(empty_environment, inside_repo, rep
 @pytest.mark.parametrize(
     ('repo', 'expected_feedback', 'version'),
     [
-        ('00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'),
-        ('01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'),
-        ('02-initial-commit.tar.gz', nullcontext(), '2026.4.27'),
-        ('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
-        ('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),
-        ('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.dev4+07319e1'),
-        ('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
-        ('07-dirty.tar.gz', nullcontext(), '2026.4.27.dev3+dirty'),
-        ('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.3'),
+        identify_repo(
+            '00-no-repository.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.missing'
+        ),
+        identify_repo(
+            '01-init-no-commits.tar.gz', pytest.warns(UserWarning, match='fallback version'), '2001.2.3+vcs.error'
+        ),
+        identify_repo('02-initial-commit.tar.gz', nullcontext(), '2026.4.27'),
+        identify_repo('03-two-commits.tar.gz', nullcontext(), '2026.4.27.1'),
+        identify_repo('04-feature-branch.tar.gz', nullcontext(), '2026.4.27.dev3+d1a9df9'),
+        identify_repo('05-feature-branch-two-commits.tar.gz', nullcontext(), '2026.4.27.dev4+07319e1'),
+        identify_repo('06-merge-feature-branch.tar.gz', nullcontext(), '2026.4.27.2'),
+        identify_repo('07-dirty.tar.gz', nullcontext(), '2026.4.27.dev3+dirty'),
+        identify_repo('08-authored-2001.tar.gz', nullcontext(), '2026.4.27.3'),
     ],
 )
 @freeze_time('2001-02-03T12:34:56.789+00:00')

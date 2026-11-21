@@ -103,12 +103,14 @@ select = [
     "SMP1",  # naming
     "SMP2",  # layout
     "SMP5",  # logic
+    "SMP7",  # classes
     "SMP8",  # tests
     "SMP9",  # docstrings
 ]
 ignore = [
     "SMP504",  # allow single-use locals
     "SMP505",  # allow single-use helper functions
+    "SMP807",  # allow assert statements that could be combined
 ]
 per-file-ignores = {"verri/__main__.py" = ["SMP106"]}  # avoid __name__ == '__main__' in … __main__.py}
 

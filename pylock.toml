@@ -256,6 +256,27 @@ marker = "\"check\" in dependency_groups"
 dependencies = []
 
 [[packages]]
+name = "simplint"
+version = "0.14.5"
+requires-python = ">=3.11"
+sdist = {name = "simplint-0.14.5.tar.gz", url = "https://files.pythonhosted.org/packages/35/f2/00f20584d4bcb48e040eb06f18aac601f4517117acc4783add16700fdb4e/simplint-0.14.5.tar.gz", hashes = {sha256 = "da4806c6f660079b1f3c3e24b7348fdbbbb66595465b410b15fe4d3408c74bd4"}}
+wheels = [
+    {name = "simplint-0.14.5-py3-none-macosx_10_12_x86_64.whl",url = "https://files.pythonhosted.org/packages/9a/5f/51645f136b86f40ef2d889769fe612ad9a6a4b4eeed5345246d5a08e3621/simplint-0.14.5-py3-none-macosx_10_12_x86_64.whl",hashes = {sha256 = "716214d47adaef278912527aa1e9431acca2b73d466b7fbe3d6ffef9a515f930"}},
+    {name = "simplint-0.14.5-py3-none-macosx_11_0_arm64.whl",url = "https://files.pythonhosted.org/packages/38/b6/23adf34e61f08805a9e7f310bf4212201d7b34c040e670af00826947998f/simplint-0.14.5-py3-none-macosx_11_0_arm64.whl",hashes = {sha256 = "036e06da597f9537dde6001ce98c6e3d8e03c3bdcb9fa9d4591f89e5f4d3b87f"}},
+    {name = "simplint-0.14.5-py3-none-manylinux_2_28_aarch64.whl",url = "https://files.pythonhosted.org/packages/be/98/bdb461b30d7876d204363446942fe1203a6c03eb6c82a6bc5d6d5a50acf2/simplint-0.14.5-py3-none-manylinux_2_28_aarch64.whl",hashes = {sha256 = "d438a8a06ee349f049278878e5bfea18d57a3e0111a2aa2ad86e0fab7dce1814"}},
+    {name = "simplint-0.14.5-py3-none-manylinux_2_28_x86_64.whl",url = "https://files.pythonhosted.org/packages/69/11/6eb059781e9fbe84f12da1889cde8c6aa20935e2a9a2816ef077439f7c81/simplint-0.14.5-py3-none-manylinux_2_28_x86_64.whl",hashes = {sha256 = "467d0768b1c607c15e733c8ce72f9ba3c206d3d0aed7633a853eeefbd0e98a88"}},
+    {name = "simplint-0.14.5-py3-none-manylinux_2_31_riscv64.whl",url = "https://files.pythonhosted.org/packages/e9/c0/70826366865a81f0ea77deb0bba8a1a068c31cb0cd33e5af296307934f79/simplint-0.14.5-py3-none-manylinux_2_31_riscv64.whl",hashes = {sha256 = "0bd82bfd48f85ee72857ce712b2d23f30008a05e88d4ca204848c73dd6237ac3"}},
+    {name = "simplint-0.14.5-py3-none-musllinux_1_2_aarch64.whl",url = "https://files.pythonhosted.org/packages/92/b8/68a97f2b6470132d848dae5bfa9e47357de7b1ee85a6d64dbe3f51f873b0/simplint-0.14.5-py3-none-musllinux_1_2_aarch64.whl",hashes = {sha256 = "4c4097d523ff20b1958a9b21538db80395d32d69d33ed38555e6c4df88517506"}},
+    {name = "simplint-0.14.5-py3-none-musllinux_1_2_x86_64.whl",url = "https://files.pythonhosted.org/packages/b0/35/a4bf9ecd2dc4af22c1207c661a5debe38abef8b8208fc16b0de7f39f3ca7/simplint-0.14.5-py3-none-musllinux_1_2_x86_64.whl",hashes = {sha256 = "944c2f8a513b33f38accf53841dc6f71219cb0e97ba4a98d9762407a6f21e797"}},
+    {name = "simplint-0.14.5-py3-none-win_amd64.whl",url = "https://files.pythonhosted.org/packages/f6/da/acb12097f8621d6ab96d1be41206794b3b718a42e205e551d076f40c49ce/simplint-0.14.5-py3-none-win_amd64.whl",hashes = {sha256 = "3ada368755ac9e1c03e62389ac1a2eb102be021c6dbc06157c1c98cae79c9af7"}},
+    {name = "simplint-0.14.5-py3-none-win_arm64.whl",url = "https://files.pythonhosted.org/packages/8c/54/d9f5472d738d50eea107f5196cec8de6adb3bcbfee1f37d53e9c3e1a8b8b/simplint-0.14.5-py3-none-win_arm64.whl",hashes = {sha256 = "f2809438b8d363efd5b4464971cf67683565334cdc81b6f71ac17559d02712cb"}},
+]
+marker = "\"check\" in dependency_groups"
+
+[packages.tool.pdm]
+dependencies = []
+
+[[packages]]
 name = "zensical"
 version = "0.0.73"
 requires-python = ">=3.11"
@@ -914,7 +935,7 @@ marker = "\"docs\" in dependency_groups or \"test\" in dependency_groups"
 dependencies = []
 
 [tool.pdm]
-hashes = {sha256 = "7b1d3768d63f7fc60e37b4db8adecd770ad2a023d4c74cf2f3abd91ade5e8d2b"}
+hashes = {sha256 = "79c8d5ad3e755b97246e2e8e2d88a5591095ac35486e19860fc05bad7b0735c0"}
 strategy = ["inherit_metadata", "static_urls"]
 
 [[tool.pdm.targets]]

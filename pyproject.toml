@@ -26,6 +26,7 @@ Homepage = "https://github.com/akaIDIOT/verri/"
 check = [
     "ruff",
     "rumdl",
+    "simplint",
 ]
 docs = [
     "mkdocstrings-python",
@@ -70,9 +71,18 @@ test = {composite = [
 format.quote-style = "single"
 lint.flake8-quotes.inline-quotes = "single"
 line-length = 120
+lint.external = [
+    "SMP",  # simplint
+]
 lint.isort.lines-after-imports = 2
 lint.select = [
-    "E", "F", "I", "Q", "RUF100", "RUF101", "UP",
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "Q",  # quotes
+    "RUF100",  # unused noqa
+    "RUF101",  # redirected noqa
+    "UP",  # pyupgrade
 ]
 
 [tool.rumdl]
@@ -85,6 +95,15 @@ reflow = true
 
 [tool.rumdl.MD029]
 style = "ordered"
+
+[tool.simplint]
+select = [
+    "SMP1",  # naming
+    "SMP2",  # layout
+    "SMP5",  # logic
+    "SMP8",  # tests
+    "SMP9",  # docstrings
+]
 
 [build-system]
 # NB: using pdm-backend's own trick to allow a project depend on itself during a build

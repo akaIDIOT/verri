@@ -3,7 +3,7 @@ import argparse
 from verri import tasty
 
 
-def main(args=None):
+def main(args=None):  # noqa: SMP903 (function not aimed at users and not included in docs)
     parser = argparse.ArgumentParser(
         description=(
             'create a tasty, PEP-440 compliant version, '
@@ -27,5 +27,4 @@ def main(args=None):
     # let argparse control the validity of the command line options, (…)
     args = parser.parse_args(args)
     # (…) assume the requested flavour attribute exists
-    flavour = getattr(tasty, args.flavour)
-    print(flavour(), end=args.end)
+    print(getattr(tasty, args.flavour)(), end=args.end)

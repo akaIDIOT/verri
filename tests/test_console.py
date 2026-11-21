@@ -23,19 +23,19 @@ def test_console_fallback(monkeypatch, capsys):
 
 
 def test_missing_tasty(capsys):
-    with pytest.raises(SystemExit) as e:
+    with pytest.raises(SystemExit) as error:
         main(['pineapple'])
 
     output = capsys.readouterr()
-    assert e.value.code > 0
+    assert error.value.code > 0
     assert 'argument tasty' in output.err
 
 
 def test_unknown_flavour(capsys):
-    with pytest.raises(SystemExit) as e:
+    with pytest.raises(SystemExit) as error:
         main(['tasty', 'banana'])
 
     output = capsys.readouterr()
-    assert e.value.code > 0
+    assert error.value.code > 0
     assert 'invalid choice' in output.err
     assert 'banana' in output.err

@@ -48,12 +48,12 @@ def strawberry():
     """
     ref = git.resolve()
     commit_ts = git.commit_ts(ref)
-    n = git.num_commits_since(dates.midnight(commit_ts))
+    num_commits = git.num_commits_since(dates.midnight(commit_ts))
 
     if git.clean():
-        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, n - 1)}'
+        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, num_commits - 1)}'
     else:
-        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, n - 1)}+dirty'
+        return f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}.{max(0, num_commits - 1)}+dirty'
 
 
 @version(fallback=mango)
@@ -78,7 +78,7 @@ def pineapple():
     ref = git.resolve()
     commit_ts = git.commit_ts(ref)
     commit_version = f'{commit_ts.year}.{commit_ts.month}.{commit_ts.day}'
-    n = git.num_commits_since(dates.midnight(commit_ts))
+    num_commits = git.num_commits_since(dates.midnight(commit_ts))
     # combine all requirements for the version under construction to be considered a releasable pineapple
     release = all(
         (
@@ -90,13 +90,13 @@ def pineapple():
         )
     )
 
-    match release, n:
+    match release, num_commits:
         case True, 1 | 0:
             return commit_version
-        case True, n if n > 1:
-            return f'{commit_version}.{n - 1}'
+        case True, num_commits if num_commits > 1:
+            return f'{commit_version}.{num_commits - 1}'
         case _:
-            return f'{commit_version}.dev{n}+{git.short(ref) if git.clean() else "dirty"}'
+            return f'{commit_version}.dev{num_commits}+{git.short(ref) if git.clean() else "dirty"}'
 
 
 __all__ = sorted(('mango', 'cherry', 'strawberry', 'pineapple'))

@@ -26,6 +26,7 @@ Homepage = "https://github.com/akaIDIOT/verri/"
 check = [
     "ruff",
     "rumdl",
+    "simplint",
 ]
 docs = [
     "mkdocstrings-python",
@@ -47,16 +48,18 @@ all = {composite = [
     "test",
     "docs",
 ]}
-check = {composite = [
+check = {keep_going = true, composite = [
     "pdm lock --check",
     "ruff format --diff verri/ tests/",
     "ruff check verri/ tests/",
+    "simplint check verri/ tests/",
     "rumdl check",
 ]}
 docs = "zensical build --clean --strict"
 fix = {composite = [
     "ruff format verri/ tests/",
     "ruff check --fix verri/ tests/",
+    "simplint check --fix verri/ tests/",
     "rumdl fmt",
 ]}
 test = {composite = [
@@ -70,9 +73,18 @@ test = {composite = [
 format.quote-style = "single"
 lint.flake8-quotes.inline-quotes = "single"
 line-length = 120
+lint.external = [
+    "SMP",  # simplint
+]
 lint.isort.lines-after-imports = 2
 lint.select = [
-    "E", "F", "I", "Q", "RUF100", "RUF101", "UP",
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "Q",  # quotes
+    "RUF100",  # unused noqa
+    "RUF101",  # redirected noqa
+    "UP",  # pyupgrade
 ]
 
 [tool.rumdl]
@@ -85,6 +97,22 @@ reflow = true
 
 [tool.rumdl.MD029]
 style = "ordered"
+
+[tool.simplint]
+select = [
+    "SMP1",  # naming
+    "SMP2",  # layout
+    "SMP5",  # logic
+    "SMP7",  # classes
+    "SMP8",  # tests
+    "SMP9",  # docstrings
+]
+ignore = [
+    "SMP504",  # allow single-use locals
+    "SMP505",  # allow single-use helper functions
+    "SMP807",  # allow assert statements that could be combined
+]
+per-file-ignores = {"verri/__main__.py" = ["SMP106"]}  # avoid __name__ == '__main__' in … __main__.py}
 
 [build-system]
 # NB: using pdm-backend's own trick to allow a project depend on itself during a build
